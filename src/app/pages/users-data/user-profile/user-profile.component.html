@@ -1,0 +1,44 @@
+<!-- Page Header -->
+<div class="card header bg-gradient-danger pb-5 pt-5 pt-md-8">
+    <div class="container-fluid">
+      <div class="header-body">
+        <div class="row">
+        </div>
+      </div>
+    </div>
+</div>
+<!-- Page Body -->
+<div class="container-fluid mt--5">
+    <div class="row justify-content-center">
+        <div class="col-6">
+            <div class="card bg-white container-height-fixed" id="page-header">
+                <div class="card-body bg-transparent p-3">
+                    <div class="row justify-content-center">
+                        <img [src]="userData.avatar_url" height="200" class="rounded-circle">
+                    </div>
+                    <div class="row">
+                        <div class="col">
+                          <div class="card-profile-stats d-flex justify-content-center mt-md-2">
+                            <div>
+                              <span class="heading">{{ userData.public_repos }}</span>
+                              <span class="description">Repos</span>
+                            </div>
+                            <div class="m-0">
+                              <span class="heading">{{ userData.followers }}</span>
+                              <span class="description">Seguidores</span>
+                            </div>
+                            <div>
+                              <span class="heading">{{ userData.following }}</span>
+                              <span class="description">Siguiendo</span>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    <div class="text-center pt-2">
+                       <h2>{{ userData.login }}</h2>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
