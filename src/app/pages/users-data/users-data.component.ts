@@ -59,30 +59,33 @@ export class UsersDataComponent implements OnInit {
       this.popValid.close();
     }
   }
-  // createChart(data){
+
+  // La api de lista de usuarios `https://api.github.com/search/users?q=usuario` no arroja el numero de seguidores.
+  // Se podria hacer consultando la api `https://api.github.com/users/YOUR_NAME` por cada uno de los 10 primeros usuarios
+  createChart(data){
   
-  //   let labels = data.map(x => x.login);
-  //   // let followers = data.map(x => x.login);
+    let labels = data.map(x => x.login);
+    // let followers = data.map(x => x.login);
 
-  //   this.chart = new Chart("MyChart", {
-  //     type: 'bar', //this denotes tha type of chart
+    this.chart = new Chart("MyChart", {
+      type: 'bar',
 
-  //     data: {// values on X-Axis
-  //       labels: labels, 
-	//        datasets: [
-  //         {
-  //           label: "Seguidores",
-  //           data: ['467','576', '572', '79', '92',
-	// 							 '574', '573', '576'],
-  //           backgroundColor: 'blue'
-  //         },
-  //       ]
-  //     },
-  //     options: {
-  //       aspectRatio:2.5
-  //     }
+      data: {
+        labels: labels, 
+	       datasets: [
+          {
+            label: "Seguidores",
+            data: ['467','576', '572', '79', '92',
+								 '574', '573', '576'],
+            backgroundColor: 'blue'
+          },
+        ]
+      },
+      options: {
+        aspectRatio:2.5
+      }
       
-  //   });
-  // }
+    });
+  }
 
 }

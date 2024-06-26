@@ -18,8 +18,8 @@
     </div>
   </div>
   <ng-template #popValid>
-    <p *ngIf="searchInput.hasError('invalidName')">La busqueda 'doublevpartners' no es valida</p>
-    <p *ngIf="searchInput.hasError('minlength') || searchInput.hasError('required')">La busqueda es de minimo 4 caracteres</p>
+    <p class="mb-1" *ngIf="searchInput.hasError('invalidName')">La busqueda 'doublevpartners' no es valida</p>
+    <p class="mb-1" *ngIf="searchInput.hasError('minlength') || searchInput.hasError('required')">La busqueda es de minimo 4 caracteres</p>
   </ng-template>
   <!-- Page Body -->
   <div class="container-fluid mt--5">
