@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpResponse } from '@angular/common/http';
-import { Observable, of, delay } from 'rxjs';
+import { Observable, of, delay, filter, map } from 'rxjs';
 
 @Injectable({
     providedIn: 'root'
@@ -39,6 +39,7 @@ import { Observable, of, delay } from 'rxjs';
           observe: 'response',
           reportProgress: true,
         })
+        .pipe(map(res => res.body))
     }
 
     getUserByName(name):Observable<any> {
@@ -47,6 +48,7 @@ import { Observable, of, delay } from 'rxjs';
           observe: 'response',
           reportProgress: true,
         })
+        .pipe(map(res => res.body))
     }
 
   }

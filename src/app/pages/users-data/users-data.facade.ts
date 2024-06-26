@@ -1,7 +1,7 @@
 import { Injectable } from "@angular/core";
 import { ApiServicesService } from "../../api/api-services.service";
 import { UsersDataState } from "./users-data.state";
-import { finalize, map } from "rxjs/operators";
+import { finalize, map, tap } from "rxjs/operators";
 import { Observable } from "rxjs";
 import { NotificationsService } from "../../shared/common/notifications.service";
 
@@ -18,9 +18,10 @@ export class UsersDataFacade {
         this.usersDataState.setLoading(true)
         this.apiServicesService.getUsersList(name)
         .pipe(finalize(() => this.usersDataState.setLoading(false)))
+        .pipe(map(x => x.items.slice(0, 10)))
         .subscribe(
             (res) => {
-                this.usersDataState.setListUsers(res.body.items);
+                this.usersDataState.setListUsers(res);
             },
             (err) => {
                 this.notificationsService.error(err.error.message, 'Error');
@@ -29,12 +30,12 @@ export class UsersDataFacade {
     }
        
     getUserByName(name) {
-        this.usersDataState.setLoading(true)
+        this.usersDataState.setLoadingSingle(true)
         this.apiServicesService.getUserByName(name)
-        .pipe(finalize(() => this.usersDataState.setLoading(false)))
+        .pipe(finalize(() => this.usersDataState.setLoadingSingle(false)))
         .subscribe(
             (res) => {
-                this.usersDataState.setUserData(res.body);
+                this.usersDataState.setUserData(res);
             },
             (err) => {
                 this.notificationsService.error(err.error.message, 'Error')
@@ -49,12 +50,12 @@ export class UsersDataFacade {
     getUserData$(): Observable<any[]> {
         return this.usersDataState.getUserData$();
     }
-    
-    getPageInfo$(): Observable<any> {
-        return this.usersDataState.getPageInfo$();
-    }
 
     isLoading$(): Observable<boolean> {
         return this.usersDataState.isLoading$();
+    }
+    
+    isLoadingSingle$(): Observable<boolean> {
+        return this.usersDataState.isLoadingSingle$();
     }
 }

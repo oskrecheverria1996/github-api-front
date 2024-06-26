@@ -9,6 +9,7 @@ import {
 import { NavigationExtras, Router } from "@angular/router";
 import { FormControl, Validators, ValidatorFn } from '@angular/forms';
 import { NotificationsService } from "../../shared/common/notifications.service";
+import { InvalidNameDirective } from "../../shared/directives/invalid-name.directive";
 
 @Component({
   selector: 'app-users-data',
@@ -20,7 +21,7 @@ export class UsersDataComponent implements OnInit {
   subscriptions: Subscription = new Subscription();
   userslist$: Observable<any[]>;
   isLoading$: Observable<boolean>;
-  searchInput = new FormControl('', [Validators.required, Validators.minLength(4)]);
+  searchInput = new FormControl('', [Validators.required, Validators.minLength(4), InvalidNameDirective()]);
 
   constructor(
     public usersDataFacade: UsersDataFacade,
@@ -45,11 +46,12 @@ export class UsersDataComponent implements OnInit {
   }
 
   search(value) {
-    if(value !== 'doublevpartners') {
-      this.usersDataFacade.getListUsers(value);
-    } else {
-      this.notificationsService.showToast('warning', "La busqueda 'doublevpartners' no puede ser realizada")
-    }
+    this.usersDataFacade.getListUsers(value);
+    // if(value !== 'doublevpartners') {
+    //   this.usersDataFacade.getListUsers(value);
+    // } else {
+    //   this.notificationsService.showToast('warning', "La busqueda 'doublevpartners' no puede ser realizada")
+    // }
   }
 
 }

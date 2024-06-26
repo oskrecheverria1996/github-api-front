@@ -13,6 +13,7 @@ export class UserProfileComponent implements OnInit, OnDestroy {
   subscriptions: Subscription = new Subscription();
   userData$: Observable<any>;
   userData: any = {};
+  isLoading$: Observable<boolean>;
 
   constructor(
     public usersDataFacade: UsersDataFacade,
@@ -22,6 +23,7 @@ export class UserProfileComponent implements OnInit, OnDestroy {
     this.usersDataFacade.getUserData$().subscribe((res) => {
       this.userData = res
     });
+    this.isLoading$ = this.usersDataFacade.isLoadingSingle$();
   }
 
   ngOnInit(): void {

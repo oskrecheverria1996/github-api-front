@@ -7,6 +7,7 @@ export class UsersDataState {
     private loading$ = new BehaviorSubject<boolean>(false);
     private pageInfo$ = new BehaviorSubject<any>({});
     private userData$ = new BehaviorSubject<any>({});
+    private loadingSingle$ = new BehaviorSubject<boolean>(false);
 
     setListUsers(results: any[]) {
         this.listUsers$.next(results);
@@ -32,11 +33,11 @@ export class UsersDataState {
         this.loading$.next(isLoading);
     }
 
-    getPageInfo$(): Observable<any> {
-        return this.pageInfo$.asObservable();
+    isLoadingSingle$(): Observable<boolean> {
+        return this.loadingSingle$.asObservable();
     }
 
-    setPageInfo(page: any): void {
-        this.pageInfo$.next(page);
+    setLoadingSingle(isLoadingSingle: boolean): void {
+        this.loadingSingle$.next(isLoadingSingle);
     }
 }
