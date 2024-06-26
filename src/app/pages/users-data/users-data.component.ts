@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { Subscription, Observable } from "rxjs";
 import { UsersDataFacade } from "./users-data.facade";
 import {
@@ -10,7 +10,8 @@ import { NavigationExtras, Router } from "@angular/router";
 import { FormControl, Validators, ValidatorFn } from '@angular/forms';
 import { NotificationsService } from "../../shared/common/notifications.service";
 import { InvalidNameDirective } from "../../shared/directives/invalid-name.directive";
-
+import { Chart } from "chart.js";
+import { NgbPopover } from '@ng-bootstrap/ng-bootstrap';
 @Component({
   selector: 'app-users-data',
   templateUrl: './users-data.component.html',
@@ -22,6 +23,8 @@ export class UsersDataComponent implements OnInit {
   userslist$: Observable<any[]>;
   isLoading$: Observable<boolean>;
   searchInput = new FormControl('', [Validators.required, Validators.minLength(4), InvalidNameDirective()]);
+  chart: any;
+  @ViewChild('popOver') public popValid: NgbPopover;
 
   constructor(
     public usersDataFacade: UsersDataFacade,
@@ -47,11 +50,39 @@ export class UsersDataComponent implements OnInit {
 
   search(value) {
     this.usersDataFacade.getListUsers(value);
-    // if(value !== 'doublevpartners') {
-    //   this.usersDataFacade.getListUsers(value);
-    // } else {
-    //   this.notificationsService.showToast('warning', "La busqueda 'doublevpartners' no puede ser realizada")
-    // }
   }
+
+  showAlert() {
+    if (this.searchInput.invalid) {
+      this.popValid.open();
+    } else {
+      this.popValid.close();
+    }
+  }
+  // createChart(data){
+  
+  //   let labels = data.map(x => x.login);
+  //   // let followers = data.map(x => x.login);
+
+  //   this.chart = new Chart("MyChart", {
+  //     type: 'bar', //this denotes tha type of chart
+
+  //     data: {// values on X-Axis
+  //       labels: labels, 
+	//        datasets: [
+  //         {
+  //           label: "Seguidores",
+  //           data: ['467','576', '572', '79', '92',
+	// 							 '574', '573', '576'],
+  //           backgroundColor: 'blue'
+  //         },
+  //       ]
+  //     },
+  //     options: {
+  //       aspectRatio:2.5
+  //     }
+      
+  //   });
+  // }
 
 }

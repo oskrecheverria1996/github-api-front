@@ -6,7 +6,7 @@ export function InvalidNameDirective(): ValidatorFn {
         const value = control.value;
 
         if (value == 'doublevpartners') {
-            return {notAllowed: true};
+            return {invalidName: true};
         }
         return null
     }
