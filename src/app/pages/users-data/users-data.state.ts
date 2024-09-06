@@ -1,43 +1,12 @@
 import { Injectable } from "@angular/core";
 import { BehaviorSubject, Observable, Subject } from "rxjs";
+import { CrudStateBase } from "src/app/shared/common/crud/crud-state-base.class";
 
 @Injectable()
-export class UsersDataState {
-    private listUsers$ = new BehaviorSubject<any>([]);
-    private loading$ = new BehaviorSubject<boolean>(false);
-    private pageInfo$ = new BehaviorSubject<any>({});
-    private userData$ = new BehaviorSubject<any>({});
-    private loadingSingle$ = new BehaviorSubject<boolean>(false);
+export class UsersDataState extends CrudStateBase<any>{
 
-    setListUsers(results: any[]) {
-        this.listUsers$.next(results);
+    constructor() {
+        super("users");
     }
 
-    getListUsers$() {
-        return this.listUsers$.asObservable();
-    }
-
-    setUserData(result) {
-        this.userData$.next(result);
-    }
-
-    getUserData$(): Observable<any> {
-        return this.userData$.asObservable();
-    }
-
-    isLoading$(): Observable<boolean> {
-        return this.loading$.asObservable();
-    }
-
-    setLoading(isLoading: boolean): void {
-        this.loading$.next(isLoading);
-    }
-
-    isLoadingSingle$(): Observable<boolean> {
-        return this.loadingSingle$.asObservable();
-    }
-
-    setLoadingSingle(isLoadingSingle: boolean): void {
-        this.loadingSingle$.next(isLoadingSingle);
-    }
 }

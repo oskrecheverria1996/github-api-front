@@ -21,11 +21,18 @@ import { UsersDataFacade } from "./users-data.facade";
 import { UsersDataState } from "./users-data.state";
 import { UsersDataRoutes } from "./users-data.routing";
 import { UserProfileComponent } from "./user-profile/user-profile.component";
+import { EditUserComponent } from './edit-user/edit-user.component';
+import { SharedModule } from "src/app/shared/shared.module";
+import { UserFormComponent } from './user-form/user-form.component';
+import { NewUserComponent } from './new-user/new-user.component';
 
 @NgModule({
   declarations: [
     UsersDataComponent,
-    UserProfileComponent
+    UserProfileComponent,
+    EditUserComponent,
+    UserFormComponent,
+    NewUserComponent
   ],
   imports: [
     CommonModule,
@@ -45,6 +52,7 @@ import { UserProfileComponent } from "./user-profile/user-profile.component";
     PaginatorModule,
     ReactiveFormsModule,
     RouterModule.forChild(UsersDataRoutes),
+    SharedModule,
   ],
   providers: [
     UsersDataFacade,

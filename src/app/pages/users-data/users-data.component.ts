@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { Subscription, Observable } from "rxjs";
 import { UsersDataFacade } from "./users-data.facade";
 import {
@@ -12,12 +12,21 @@ import { NotificationsService } from "../../shared/common/notifications.service"
 import { InvalidNameDirective } from "../../shared/directives/invalid-name.directive";
 import { Chart } from "chart.js";
 import { NgbPopover } from '@ng-bootstrap/ng-bootstrap';
+import { ICrudComponent } from 'src/app/shared/common/crud/crud-component.interface';
+import { ListComponentBase } from 'src/app/shared/common/crud/list/list-component-base.class';
+import { ModalService } from 'src/app/shared/services/modal.service';
+import { EditUserComponent } from "./edit-user/edit-user.component";
+import { NewUserComponent } from './new-user/new-user.component';
+
 @Component({
   selector: 'app-users-data',
   templateUrl: './users-data.component.html',
   styleUrls: ['./users-data.component.scss']
 })
-export class UsersDataComponent implements OnInit {
+
+export class UsersDataComponent 
+    extends ListComponentBase<any>
+    implements OnInit, ICrudComponent<any> {
 
   subscriptions: Subscription = new Subscription();
   userslist$: Observable<any[]>;
@@ -28,15 +37,44 @@ export class UsersDataComponent implements OnInit {
 
   constructor(
     public usersDataFacade: UsersDataFacade,
-    private modalService: NgbModal,
+    private modalService: ModalService,
     private router: Router,
-    private notificationsService: NotificationsService
+    private notificationsService: NotificationsService,
   ) {
-    this.userslist$ = this.usersDataFacade.getListUsers$();
+    super(usersDataFacade)
+    this.userslist$ = this.usersDataFacade.getList$();
     this.isLoading$ = this.usersDataFacade.isLoading$();
   }
-  
+
   ngOnInit(): void {
+    this.loadByCriteria()
+  }
+
+  create(element?: any): void {
+    this.modalService.loadComponent(NewUserComponent, 
+      {  },
+      { size: "lg", container: "body" }
+    );
+  }
+
+  editar(event: any): void {
+    let user = {
+      username: 'Oscar',
+      type: 'Desarrollador',
+      description: 'Desarrollador'
+    }
+    this.modalService.loadComponent(EditUserComponent, 
+      user,
+      { size: "lg", container: "body" }
+    );
+  }
+
+  delete(element: any, event: Event) {
+    throw new Error('Method not implemented.');
+  }
+
+  clone(element: any, event: Event) {
+    throw new Error('Method not implemented.');
   }
 
   onPageChange(event) {
@@ -49,7 +87,7 @@ export class UsersDataComponent implements OnInit {
   }
 
   search(value) {
-    this.usersDataFacade.getListUsers(value);
+    this.usersDataFacade.loadList(value);
   }
 
   showAlert() {
@@ -60,8 +98,6 @@ export class UsersDataComponent implements OnInit {
     }
   }
 
-  // La api de lista de usuarios `https://api.github.com/search/users?q=usuario` no arroja el numero de seguidores.
-  // Se podria hacer consultando la api `https://api.github.com/users/YOUR_NAME` por cada uno de los 10 primeros usuarios
   createChart(data){
   
     let labels = data.map(x => x.login);

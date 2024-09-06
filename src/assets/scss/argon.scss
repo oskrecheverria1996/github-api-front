@@ -69,4 +69,7 @@
 @import "custom/vendors";
 
 // Angular Differences
-@import "angular-differences/angular-differences"
+@import "angular-differences/angular-differences";
+
+// custom clases in file assets/scss/general-clases.scss
+@import "general-clases";

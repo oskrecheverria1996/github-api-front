@@ -10,6 +10,7 @@
               </div>
               <div class="col-2 text-white">
                 <button type="button" [disabled]="searchInput.invalid" class="btn btn-info" (click)="search(searchInput.value)">Buscar</button>
+                <button type="button" class="btn btn-info" (click)="create()">Crear</button>
               </div>
             </div>
           </div>
@@ -33,7 +34,7 @@
                     [value]="userslist$ | async"
                     [paginator]="false"
                     [rows]="10"
-                    (onRowSelect)="edit($event)"
+                    (onRowSelect)="editar($event)"
                     selectionMode="single"
                     [tableStyle]="{ 'min-width': '100%' }">
                     <ng-template pTemplate="header">

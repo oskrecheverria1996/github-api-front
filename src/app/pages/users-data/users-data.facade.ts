@@ -5,63 +5,58 @@ import { finalize, map, tap } from "rxjs/operators";
 import { Observable } from "rxjs";
 import { NotificationsService } from "../../shared/common/notifications.service";
 import { SearchService, UsersService } from "src/app/api/github-service/services";
+import { CrudFacadeBase } from "src/app/shared/common/crud/crud-facade-base.class";
+import { IListComponent } from "src/app/shared/common/crud/list/list-component.interface";
+import { IEditComponent } from "src/app/shared/common/crud/edit/edit-component.interface";
 
 @Injectable()
-export class UsersDataFacade {
+export class UsersDataFacade 
+    extends CrudFacadeBase<any>
+    implements IListComponent<any>, IEditComponent<any>
+     {
     constructor(
         private apiServicesService: ApiServicesService,
         private usersDataState: UsersDataState,
         private notificationsService: NotificationsService,
         private searchService: SearchService,
         private usersService: UsersService
-    ) { }
+    ) {
+        super(usersDataState)
+     }
+     
 
-    
-    getListUsers(q?) {
-        this.usersDataState.setLoading(true)
+    // ILIST
+
+    loadList(q?: any): void {
+        this.usersDataState.setLoading(true);
         let per_page = 10;
-        // this.apiServicesService.getUsersList(name)
-        this.searchService.searchUsers({q, per_page})
-        .pipe(finalize(() => this.usersDataState.setLoading(false)))
-        // .pipe(map(x => x.items.slice(0, 10)))
-        .subscribe(
-            (res) => {
-                this.usersDataState.setListUsers(res.items);
+        let sort = "followers";
+
+        this.searchService.searchUsers({q, per_page, sort: 'followers'})
+            .pipe(finalize(() => this.usersDataState.setLoading(false)))
+            .subscribe((res) => {
+                this.usersDataState.setList(res.items);
             },
             (err) => {
                 this.notificationsService.error(err.error.message, 'Error');
-            }
-        )
-    }
-       
-    getUserByName(username) {
+            })
+    };
+    
+    // IEDIT
+
+    loadById(username: string): void { // cambiar por id y no por username
         this.usersDataState.setLoadingSingle(true);
-        // this.apiServicesService.getUserByName(name)
+
         this.usersService.usersGetByUsername({username})
-        .pipe(finalize(() => this.usersDataState.setLoadingSingle(false)))
-        .subscribe(
+            .pipe(finalize(() => this.usersDataState.setLoadingSingle(false)))
+            .subscribe(
             (res) => {
-                this.usersDataState.setUserData(res);
+                this.usersDataState.setSingle(res);
             },
             (err) => {
                 this.notificationsService.error(err.error.message, 'Error')
             }
         )
     }
-
-    getListUsers$(): Observable<any[]> {
-        return this.usersDataState.getListUsers$();
-    }
-
-    getUserData$(): Observable<any[]> {
-        return this.usersDataState.getUserData$();
-    }
-
-    isLoading$(): Observable<boolean> {
-        return this.usersDataState.isLoading$();
-    }
-    
-    isLoadingSingle$(): Observable<boolean> {
-        return this.usersDataState.isLoadingSingle$();
-    }
+       
 }

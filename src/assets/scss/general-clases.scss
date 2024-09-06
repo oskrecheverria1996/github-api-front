@@ -1,0 +1,25 @@
+
+// @import "../fonts/montserrat-webfonts/Montserrat.css";
+
+// // Global styles
+// body {
+//     font-family: "Montserrat", sans-serif;
+//     font-size: 12px;
+// }
+
+a {
+    cursor: pointer;
+}
+// Classes definitions
+.mousepointer {
+    cursor: pointer;
+}
+
+.col-form-label {
+    padding-top: 4px;
+    padding-bottom: 4px;
+}
+
+input[type='text'].form-control {
+    color: black;
+}

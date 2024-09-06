@@ -1,0 +1,55 @@
+<app-modal (save)="onSaveModal($event)">
+    <!-- BODY-->
+    <div modal-body>
+       <form #usersForm="ngForm" name="usersForm" class="form-horizontal">
+           <div class="row pb-2">
+               <label class="col-sm-4 col-form-label text-right">
+                   Nombre
+               </label>
+               <div class="col-sm-6">
+                   <input
+                   type="text"
+                   name="username"
+                   id="username"
+                   class="form-control form-control-sm"
+                   [(ngModel)]="user.username"
+                   (ngModelChange)="modelChange($event)"
+                   #username="ngModel"
+                   placeholder="Nombre">
+               </div>
+           </div>
+           <div class="row pb-2">
+               <label class="col-sm-4 col-form-label text-right">
+                   Tipo
+               </label>
+               <div class="col-sm-6">
+                   <input
+                   type="text"
+                   name="tipo"
+                   id="tipo"
+                   class="form-control form-control-sm"
+                   [(ngModel)]="user.type"
+                   (ngModelChange)="modelChange($event)"
+                   #tipo="ngModel"
+                   placeholder="Tipo">
+               </div>
+           </div>
+            <div class="row pb-2">
+               <label class="col-sm-4 col-form-label text-right">
+                   Descripcion
+               </label>
+               <div class="col-sm-6">
+                   <input
+                   type="text"
+                   name="descripcion"
+                   id="descripcion"
+                   class="form-control form-control-sm"
+                   [(ngModel)]="user.description"
+                   (ngModelChange)="modelChange($event)"
+                   #descripcion="ngModel"
+                   placeholder="Descripcion">
+               </div>
+           </div>
+       </form>
+    </div>
+</app-modal>

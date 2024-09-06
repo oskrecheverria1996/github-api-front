@@ -1,0 +1,100 @@
+<div class="modal-content">
+    <div class="modal-header">
+        <!-- HEADER -->
+        <div class="container">
+            <div class="row">
+                <div class="col-10">
+                    <div class="row">
+                        <div class="col-12 pl-0 pr-0">
+                            <div class="modal-title text-truncate">
+                                <!-- ICON -->
+                                <!-- <i *ngIf="data.icon" [ngClass]="data.icon"> </i> -->
+        
+                                <!-- ACTION TEXT -->
+                                <!-- <span *ngIf="data.action" class="bold ml-1" title="">{{
+                                    data.action | translate
+                                }}</span>
+        
+                                <div
+                                    *ngIf="data.action && data.title"
+                                    class="header-separator"
+                                ></div> -->
+        
+                                <!-- FIX TITLE -->
+                                <!-- <span *ngIf="data.title" class="bold" title=""
+                                    >&nbsp;{{ data.title | translate }}</span
+                                > -->
+                                <!-- OWNER REFERENCE -->
+                                <!-- <span *ngIf="data.refOwner" title="">
+                                    {{ data.refOwner }}</span
+                                > -->
+        
+                                <!-- DYNAMIC TEXT -->
+                                <!-- <span *ngIf="data.dynamicText" title="">
+                                    ({{ data.dynamicText }})</span
+                                > -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-2 text-right pl-0 pr-0">
+                    <!-- URL -->
+                    <!-- <a
+                        *ngIf="data.helpUrl"
+                        class="ml-2 mr-2 help-icon"
+                        title=""
+                        [href]="data.helpUrl"
+                        target="_blank"
+                        ><i class="fas fa-sm fa-question-circle"></i
+                    ></a> -->
+                    <!-- TOOLTIP -->
+                    <!-- <span
+                        *ngIf="data.helpTooltip"
+                        data-html="true"
+                        ngbTooltip="{{ data.helpTooltip | translate }}"
+                        class="ml-2 mr-2 help-icon"
+                    >
+                        <i class="far fa-sm fa-question-circle"></i>
+                    </span> -->
+        
+                    <!-- CLOSE -->
+                    <!-- <span
+                        *ngIf="data.closeBtn || data.closeBtn === undefined"
+                        (click)="activeModal.dismiss('close')"
+                        class="mousepointer"
+                    >
+                        <i class="iway-close"> </i>
+                    </span> -->
+                </div>
+            </div>
+        </div>
+
+        <!-- CUSTOM HEADER -->
+        <!-- <div *ngIf="!header" class="inner-header">
+            <h6 class="modal-title" id="modal-title-default">
+                {{ title }}
+                <ng-content select="[modal-header]"></ng-content>
+            </h6>
+            <span (click)="activeModal.dismiss('close')">
+                <i class="iway-close"> </i>
+            </span>
+        </div> -->
+    </div>
+    <div>
+        <div class="row">
+            <div class="col body-container">
+
+                <!-- Body -->
+                <div class="modal-body">
+                    <ng-content select="[modal-body]"></ng-content>
+                    <!-- <ng-content select="[modal-body]" *ngIf="!showWaiting"></ng-content> -->
+                </div>
+                <!-- Footer -->
+                <div class="modal-footer">
+                    <button class="btn btn-icon btn-3 btn-sm" (click)="activeModal.dismiss('cancel')">Cancel</button>
+                    <button class="btn btn-icon btn-3 btn-sm" (click)="savePressed($event)">Save</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

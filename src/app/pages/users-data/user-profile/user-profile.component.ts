@@ -20,7 +20,7 @@ export class UserProfileComponent implements OnInit, OnDestroy {
     private route: ActivatedRoute,
   ) { 
     // this.userData$ = this.usersDataFacade.getUserData$();
-    this.usersDataFacade.getUserData$().subscribe((res) => {
+    this.usersDataFacade.getSingle$().subscribe((res) => {
       this.userData = res
     });
     this.isLoading$ = this.usersDataFacade.isLoadingSingle$();
@@ -29,7 +29,7 @@ export class UserProfileComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.subscriptions.add(
       this.route.params.subscribe((params) => {
-       this.usersDataFacade.getUserByName(params['userName']);
+       this.usersDataFacade.loadById(params['userName']);
       })
     )
   }
