@@ -59,7 +59,7 @@ export class UsersDataComponent
 
   editar(event: any): void {
     let user = {
-      username: 'Oscar',
+      username: event.data.login,
       type: 'Desarrollador',
       description: 'Desarrollador'
     }
