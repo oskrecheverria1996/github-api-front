@@ -4,11 +4,13 @@ import { ModalComponent } from "./components/modal/modal.component";
 import { FormsModule } from '@angular/forms';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { ModalService } from "./services/modal.service";
+import { DelayInputDirective } from './directives/delay-input.directive';
 // import { ButtonsModule } from "ngx-bootstrap";
 
 @NgModule({
   declarations: [
-    ModalComponent
+    ModalComponent,
+    DelayInputDirective
   ],
   imports: [
     CommonModule,

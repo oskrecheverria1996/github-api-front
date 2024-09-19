@@ -10,7 +10,8 @@
     "e2e": "ng e2e",
     "install:clean": "rm -rf node_modules/ && rm -rf package-lock.json && npm install && npm start",
     "generate-services": "ng-openapi-gen -c open-api/config/openapi-gen-services.json",
-    "gs": "npm run generate-services"
+    "generate-auth": "ng-openapi-gen -c open-api/config/openapi-gen-auth-services.json",
+    "gs": "npm run generate-services && npm run generate-auth"
   },
   "private": true,
   "dependencies": {
@@ -35,6 +36,7 @@
     "lodash": "^4.17.21",
     "ng-openapi-gen": "^0.51.0",
     "ngx-clipboard": "15.0.1",
+    "ngx-cookie-service": "^14.0.1",
     "ngx-toastr": "14.2.2",
     "nouislider": "15.5.1",
     "primeicons": "^4.1.0",

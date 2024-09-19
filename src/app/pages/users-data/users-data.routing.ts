@@ -11,6 +11,6 @@ export const UsersDataRoutes: Routes = [
     {
         path: 'user/:userName',
         component: UserProfileComponent,
-        // canActivate: [ScoreGuard], // No puedo encontrar un usuario con un score mayor a 30.0
+        canActivate: [ScoreGuard], // No puedo encontrar un usuario con un score mayor a 30.0
     }
 ]

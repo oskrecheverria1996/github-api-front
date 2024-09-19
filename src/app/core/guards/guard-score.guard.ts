@@ -14,7 +14,7 @@ export class ScoreGuard implements CanActivate {
 
   getCurrentUser() {
    let score = JSON.parse(localStorage.getItem('currentUser')).score;
-   if(score > 30) {
+   if(score >= 1) {
     return true;
    } else {
     return false;
