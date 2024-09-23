@@ -5,12 +5,16 @@ import { FormsModule } from '@angular/forms';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { ModalService } from "./services/modal.service";
 import { DelayInputDirective } from './directives/delay-input.directive';
+import { PageHeaderComponent } from './components/page-header/page-header.component';
+import { PageBodyComponent } from './components/page-body/page-body.component';
 // import { ButtonsModule } from "ngx-bootstrap";
 
 @NgModule({
   declarations: [
     ModalComponent,
-    DelayInputDirective
+    DelayInputDirective,
+    PageHeaderComponent,
+    PageBodyComponent
   ],
   imports: [
     CommonModule,
@@ -22,7 +26,9 @@ import { DelayInputDirective } from './directives/delay-input.directive';
     ModalService
   ],
   exports: [
-    ModalComponent
+    ModalComponent,
+    PageHeaderComponent,
+    PageBodyComponent
   ]
 })
 export class SharedModule { }

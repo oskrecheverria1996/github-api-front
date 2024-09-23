@@ -8,7 +8,7 @@ import { AuthLayoutComponent } from './auth/auth-layout/auth-layout.component';
 import { AuthGuard } from './shared/guards/auth.guard';
 
 const routes: Routes = [
-  { path: '', redirectTo: 'users-data', pathMatch: 'full' },
+  { path: '', redirectTo: 'auth/login', pathMatch: 'full' },
   {
     path: '',
     component: AuthLayoutComponent,
@@ -28,20 +28,32 @@ const routes: Routes = [
     component: LayoutComponent,
     children: [
       {
+        path: "home",
+        component: HomeComponent,
+        pathMatch: "full",
+      },
+      {
         path: "users-data",
         loadChildren: () =>
         import("./pages/users-data/users-data.module").then(
             (m) => m.UsersDataModule
         ),
+      },
+      {
+        path: "products",
+        loadChildren: () =>
+        import("./pages/products/products.module").then(
+            (m) => m.ProductsModule
+        ),
       }
     ]
   }, { 
     path: '', 
-    redirectTo: 'users-data', 
+    redirectTo: 'auth/login', 
     pathMatch: 'full' 
   }, { 
     path: '**', 
-    redirectTo: 'users-data' 
+    redirectTo: 'auth/login' 
   },
 ];
 

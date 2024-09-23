@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { LoginUserDto } from "../../api/auth-service/models/login-user-dto";
 import { AuthService } from 'src/app/api/auth-service/services';
 import { Router } from '@angular/router';
-import { CookieService } from "ngx-cookie-service";
+import { JwtSessionService } from 'src/app/shared/common/jwt-session.service';
 
 @Component({
   selector: 'app-login',
@@ -19,7 +19,7 @@ export class LoginComponent implements OnInit {
   constructor(
     private authService: AuthService,
     public router: Router,
-    public cookieService: CookieService) { }
+    public jwtService: JwtSessionService) { }
 
   ngOnInit(): void {
   }
@@ -31,8 +31,8 @@ export class LoginComponent implements OnInit {
     }
     this.authService.usersControllerLogin({body})
     .subscribe((data) => {
-      this.cookieService.set('token', data.token);
-      this.router.navigateByUrl('users-data');
+      this.jwtService.login(data.token);
+      this.router.navigateByUrl('home');
     },
     (err) => {
 

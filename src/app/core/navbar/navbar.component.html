@@ -13,7 +13,7 @@
               <i class="ni ni-circle-08"></i>
             </span>
             <div class="media-body ml-2 d-none d-lg-block">
-              <span class="mb-0 text-sm  font-weight-bold">Oscar Echeverria</span>
+              <span class="mb-0 text-sm  font-weight-bold">{{ user.name }}</span>
             </div>
           </div>
         </a>
@@ -38,7 +38,7 @@
             <span>Support</span>
           </a>
           <div class="dropdown-divider"></div>
-          <a href="#!" class="dropdown-item">
+          <a href="#!" class="dropdown-item" (click)="logout()">
             <i class="ni ni-user-run"></i>
             <span>Logout</span>
           </a>
