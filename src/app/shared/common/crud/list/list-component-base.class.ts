@@ -4,6 +4,7 @@ import { Observable, Subscription } from "rxjs";
 // import { ScreenService } from "src/app/shared/services/screen/screen.service";
 // import { PageMetadata } from "../../../models/page-metadata.model";
 import { IListComponent } from "./list-component.interface";
+import { Page } from "src/app/shared/models/page.model";
 
 @Injectable({
     providedIn: "root",
@@ -13,7 +14,7 @@ export abstract class ListComponentBase<T> implements OnDestroy {
 
     listResult$: Observable<{}>;
     isLoading$: Observable<boolean>;
-    // pageMetadata$: Observable<PageMetadata>;
+    page$: Observable<Page>;
 
     params: any;
     currentSortField: string;
@@ -22,7 +23,7 @@ export abstract class ListComponentBase<T> implements OnDestroy {
     screenClasses: string; //Resize p-table
 
     constructor(private currentFacade: IListComponent<T>) {
-        // this.pageMetadata$ = this.currentFacade.getPageMetadata$();
+        this.page$ = this.currentFacade.getPage$();
         this.isLoading$ = this.currentFacade.isLoading$();
         this.listResult$ = this.currentFacade.getList$();
         this.resetSearchSortCriteria();

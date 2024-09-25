@@ -1,4 +1,30 @@
 <app-page-header>
 </app-page-header>
 <app-page-body>
+    <b *ngIf="(isLoading$ | async)">Cargando...</b>
+    <div *ngIf="!(isLoading$ | async)">
+      <p-table 
+        [value]="listResult$ | async"
+        [paginator]="false"
+        [rows]="10"
+        (onRowSelect)="edit($event)"
+        selectionMode="single"
+        [tableStyle]="{ 'min-width': '100%' }">
+        <ng-template pTemplate="header">
+            <tr>
+                <th>ID</th>
+                <th>Product</th>
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-product>
+            <tr [pSelectableRow]="product">
+                <td>{{ product.id }}</td>
+                <td>{{ product.name }}</td>
+            </tr>
+        </ng-template>
+      </p-table>
+      <pre>
+        {{ page$ | async | json }}
+      </pre>
+    </div>
 </app-page-body>

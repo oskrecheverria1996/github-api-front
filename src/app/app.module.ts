@@ -12,6 +12,7 @@ import { ToastrModule } from "ngx-toastr";
 import { CommonModule } from "@angular/common";
 import { CookieService } from "ngx-cookie-service";
 import { AuthInterceptor } from './shared/interceptors/auth-interceptor.interceptor';
+import { UnauthorizedInterceptor } from './shared/interceptors/unauthorized.interceptor';
 @NgModule({
   imports: [
     BrowserAnimationsModule,
@@ -38,6 +39,11 @@ import { AuthInterceptor } from './shared/interceptors/auth-interceptor.intercep
     {
       provide: HTTP_INTERCEPTORS,
       useClass: AuthInterceptor,
+      multi: true
+    },
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: UnauthorizedInterceptor,
       multi: true
     }
   ],

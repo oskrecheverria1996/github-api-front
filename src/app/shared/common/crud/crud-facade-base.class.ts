@@ -1,6 +1,7 @@
 import { Injectable } from "@angular/core";
 import { Observable, Subscription } from "rxjs";
 import { ICrudState } from "./crud-state.interface";
+import { Page } from "../../models/page.model";
 
 @Injectable({
     providedIn: "root",
@@ -24,6 +25,10 @@ export abstract class CrudFacadeBase<T> {
     
     isLoadingSingle$(): Observable<boolean> {
         return this.currentState.isLoadingSingle$();
+    }
+
+    getPage$(): Observable<Page> {
+        return this.currentState.getPage$();
     }
     
     getById$(): Observable<T> {

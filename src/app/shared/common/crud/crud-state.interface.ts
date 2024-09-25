@@ -1,4 +1,5 @@
 import { Observable } from "rxjs";
+import { Page } from "../../models/page.model";
 
 export interface ICrudState<T> {
     isLoading$(): Observable<boolean>;
@@ -8,4 +9,6 @@ export interface ICrudState<T> {
     getList$(): Observable<any>;
     setList(results: T[]): void;
     getSingle$(): Observable<T>;
+    getPage$(): Observable<Page>;
+    setPage(page): void;
 }

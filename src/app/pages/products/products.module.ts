@@ -17,6 +17,8 @@ import { TabViewModule } from 'primeng/tabview';
 import { TreeModule } from 'primeng/tree';
 import { TreeTableModule } from 'primeng/treetable';
 import { ProductsRoutes } from './products.routing';
+import { ProductsFacade } from "./products.facade";
+import { ProductsState } from "./products.state";
 
 
 @NgModule({
@@ -41,6 +43,10 @@ import { ProductsRoutes } from './products.routing';
     PaginatorModule,
     RouterModule.forChild(ProductsRoutes),
     SharedModule,
+  ],
+  providers: [
+    ProductsFacade,
+    ProductsState
   ]
 })
 export class ProductsModule { }
