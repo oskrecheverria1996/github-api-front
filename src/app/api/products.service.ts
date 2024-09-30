@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpResponse } from '@angular/common/http';
+import { HttpClient, HttpParams, HttpResponse } from '@angular/common/http';
 import { map, Observable } from 'rxjs';
 
 @Injectable({
@@ -11,8 +11,8 @@ export class ProductsService {
     private http: HttpClient,
   ) { }
 
-  getProductsList():Observable<any> {
-    return this.http.get(`http://localhost:3000/api/products`,
+  getProductsList(filters):Observable<any> {
+    return this.http.get(`http://localhost:3000/api/products?page=${filters.page}&limit=${filters.limit}`,
       {
         observe: 'response',
         reportProgress: true,

@@ -1,4 +1,5 @@
 <app-page-header>
+  <button class="btn btn-info" (click)="create($event)"></button>
 </app-page-header>
 <app-page-body>
     <b *ngIf="(isLoading$ | async)">Cargando...</b>
@@ -23,8 +24,15 @@
             </tr>
         </ng-template>
       </p-table>
-      <pre>
-        {{ page$ | async | json }}
-      </pre>
+      <!-- Pagination -->
+      <div *ngIf="page$ | async; let page">
+        <p-paginator
+          [first]="currentPage"
+          [rows]="limit" 
+          [totalRecords]="page?.total" 
+          (onPageChange)="changePage($event)" 
+          [rowsPerPageOptions]="[10, 20, 30]">
+        </p-paginator>
+      </div>
     </div>
 </app-page-body>

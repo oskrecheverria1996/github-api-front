@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { LoginUserDto } from "../../api/auth-service/models/login-user-dto";
-import { AuthService } from 'src/app/api/auth-service/services';
+import { LoginUserDto } from "../../api/nest-service/models/login-user-dto";
+import { AuthService } from 'src/app/api/nest-service/services';
 import { Router } from '@angular/router';
 import { JwtSessionService } from 'src/app/shared/common/jwt-session.service';
 

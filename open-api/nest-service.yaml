@@ -1,0 +1,359 @@
+---
+openapi: 3.0.0
+paths:
+  /api:
+    get:
+      operationId: AppController_getHello
+      parameters: []
+      responses:
+        '200':
+          description: ''
+  /api/auth/register:
+    post:
+      operationId: UsersController_create
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateUserDto'
+      responses:
+        '201':
+          description: ''
+      tags:
+        - auth
+  /api/auth/login:
+    post:
+      operationId: UsersController_login
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/LoginUserDto'
+      responses:
+        '200':
+          description: User login response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LoginResponseDto'
+      tags:
+        - auth
+  /api/auth:
+    get:
+      operationId: UsersController_findAll
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      tags:
+        - auth
+  /api/auth/{id}:
+    get:
+      operationId: UsersController_findOne
+      parameters:
+        - name: id
+          required: true
+          in: path
+          schema:
+            type: string
+      responses:
+        '200':
+          description: ''
+      tags:
+        - auth
+    patch:
+      operationId: UsersController_update
+      parameters:
+        - name: id
+          required: true
+          in: path
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateUserDto'
+      responses:
+        '200':
+          description: ''
+      tags:
+        - auth
+    delete:
+      operationId: UsersController_remove
+      parameters:
+        - name: id
+          required: true
+          in: path
+          schema:
+            type: string
+      responses:
+        '200':
+          description: ''
+      tags:
+        - auth
+  /api/products:
+    post:
+      operationId: ProductsController_create
+      parameters:
+        - name: Authorization
+          required: true
+          in: header
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateProductDto'
+      responses:
+        default:
+          description: Create a product
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Product'
+      tags:
+        - products
+    get:
+      operationId: ProductsController_findAll
+      parameters:
+        - name: limit
+          required: true
+          in: query
+          schema:
+            type: number
+        - name: page
+          required: true
+          in: query
+          schema:
+            type: number
+      responses:
+        default:
+          description: The product records
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PaginatedResponseDto'
+      tags:
+        - products
+  /api/products/{id}:
+    get:
+      operationId: ProductsController_findOne
+      parameters:
+        - name: id
+          required: true
+          in: path
+          schema:
+            type: string
+      responses:
+        default:
+          description: Get a product
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Product'
+      tags:
+        - products
+    patch:
+      operationId: ProductsController_update
+      parameters:
+        - name: id
+          required: true
+          in: path
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateProductDto'
+      responses:
+        default:
+          description: Get a product
+          content:
+            application/json:
+              schema:
+                type: object
+      tags:
+        - products
+    delete:
+      operationId: ProductsController_remove
+      parameters:
+        - name: id
+          required: true
+          in: path
+          schema:
+            type: string
+      responses:
+        default:
+          description: Delete a product
+          content:
+            application/json:
+              schema:
+                type: string
+      tags:
+        - products
+info:
+  title: Mi Api documentation
+  description: Esta es una Api
+  version: '1.0'
+  contact: {}
+tags:
+  - name: auth
+    description: ''
+  - name: products
+    description: ''
+servers: []
+components:
+  securitySchemes:
+    basic:
+      type: http
+      scheme: basic
+  schemas:
+    CreateUserDto:
+      type: object
+      properties:
+        name:
+          type: string
+        email:
+          type: string
+        password:
+          type: string
+      required:
+        - name
+        - email
+        - password
+    User:
+      type: object
+      properties:
+        name:
+          type: string
+        email:
+          type: string
+        isActive:
+          type: boolean
+        emailValidated:
+          type: boolean
+        password:
+          type: string
+        img:
+          type: string
+        role:
+          type: array
+          items:
+            type: string
+      required:
+        - name
+        - email
+        - isActive
+        - emailValidated
+        - password
+        - img
+        - role
+    LoginResponseDto:
+      type: object
+      properties:
+        token:
+          type: string
+        user:
+          $ref: '#/components/schemas/User'
+      required:
+        - token
+        - user
+    LoginUserDto:
+      type: object
+      properties:
+        email:
+          type: string
+        password:
+          type: string
+      required:
+        - email
+        - password
+    UpdateUserDto:
+      type: object
+      properties: {}
+    Product:
+      type: object
+      properties:
+        name:
+          type: string
+        available:
+          type: boolean
+        price:
+          type: number
+        description:
+          type: string
+        user:
+          type: string
+      required:
+        - name
+        - available
+        - price
+        - description
+        - user
+    PageDto:
+      type: object
+      properties:
+        number:
+          type: number
+        limit:
+          type: number
+        total:
+          type: number
+        next:
+          type: string
+        prev:
+          type: string
+      required:
+        - number
+        - limit
+        - total
+        - next
+        - prev
+    PaginatedResponseDto:
+      type: object
+      properties:
+        page:
+          $ref: '#/components/schemas/PageDto'
+        content:
+          type: array
+          items:
+            type: string
+      required:
+        - page
+        - content
+    CreateProductDto:
+      type: object
+      properties:
+        name:
+          type: string
+        price:
+          type: number
+        description:
+          type: string
+      required:
+        - name
+        - price
+        - description
+    UpdateProductDto:
+      type: object
+      properties:
+        name:
+          type: string
+        price:
+          type: number
+        description:
+          type: string
+        available:
+          type: boolean
+      required:
+        - available

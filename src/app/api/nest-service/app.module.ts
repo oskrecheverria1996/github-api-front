@@ -6,6 +6,7 @@ import { ApiConfiguration, ApiConfigurationParams } from './api-configuration';
 
 import { ApiService } from './services/api.service';
 import { AuthService } from './services/auth.service';
+import { ProductsService } from './services/products.service';
 
 /**
  * Module that provides all services and configuration.
@@ -17,6 +18,7 @@ import { AuthService } from './services/auth.service';
   providers: [
     ApiService,
     AuthService,
+    ProductsService,
     ApiConfiguration
   ],
 })

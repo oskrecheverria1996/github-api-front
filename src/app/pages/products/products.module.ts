@@ -19,11 +19,15 @@ import { TreeTableModule } from 'primeng/treetable';
 import { ProductsRoutes } from './products.routing';
 import { ProductsFacade } from "./products.facade";
 import { ProductsState } from "./products.state";
+import { ProductFormComponent } from './product-form/product-form.component';
+import { CreateProductComponent } from './create-product/create-product.component';
 
 
 @NgModule({
   declarations: [
-    ProductsComponent
+    ProductsComponent,
+    ProductFormComponent,
+    CreateProductComponent
   ],
   imports: [
     CommonModule,

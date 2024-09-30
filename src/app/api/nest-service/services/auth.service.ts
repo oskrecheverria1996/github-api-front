@@ -3,12 +3,13 @@
 import { HttpClient, HttpContext } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { map, tap } from 'rxjs/operators';
+import { map } from 'rxjs/operators';
 
 import { BaseService } from '../base-service';
 import { ApiConfiguration } from '../api-configuration';
 import { StrictHttpResponse } from '../strict-http-response';
 
+import { LoginResponseDto } from '../models/login-response-dto';
 import { usersControllerCreate } from '../fn/auth/users-controller-create';
 import { UsersControllerCreate$Params } from '../fn/auth/users-controller-create';
 import { usersControllerFindAll } from '../fn/auth/users-controller-find-all';
@@ -21,19 +22,6 @@ import { usersControllerRemove } from '../fn/auth/users-controller-remove';
 import { UsersControllerRemove$Params } from '../fn/auth/users-controller-remove';
 import { usersControllerUpdate } from '../fn/auth/users-controller-update';
 import { UsersControllerUpdate$Params } from '../fn/auth/users-controller-update';
-
-interface userEntity {
-  email: string;
-  emailValidated: string;
-  id: string;
-  name: string;
-  role: []
-}
-
-interface LoginResponse {
-  token: string;
-  userEntity: userEntity;
-}
 
 @Injectable({ providedIn: 'root' })
 export class AuthService extends BaseService {
@@ -75,7 +63,7 @@ export class AuthService extends BaseService {
    *
    * This method sends `application/json` and handles request body of type `application/json`.
    */
-  usersControllerLogin$Response(params: UsersControllerLogin$Params, context?: HttpContext): Observable<StrictHttpResponse<void>> {
+  usersControllerLogin$Response(params: UsersControllerLogin$Params, context?: HttpContext): Observable<StrictHttpResponse<LoginResponseDto>> {
     return usersControllerLogin(this.http, this.rootUrl, params, context);
   }
 
@@ -85,9 +73,9 @@ export class AuthService extends BaseService {
    *
    * This method sends `application/json` and handles request body of type `application/json`.
    */
-  usersControllerLogin(params: UsersControllerLogin$Params, context?: HttpContext): Observable<LoginResponse> {
+  usersControllerLogin(params: UsersControllerLogin$Params, context?: HttpContext): Observable<LoginResponseDto> {
     return this.usersControllerLogin$Response(params, context).pipe(
-      map((r: StrictHttpResponse<any>): LoginResponse => JSON.parse(r.body))
+      map((r: StrictHttpResponse<LoginResponseDto>): LoginResponseDto => r.body)
     );
   }
 

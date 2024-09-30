@@ -3,7 +3,8 @@ import { CrudFacadeBase } from 'src/app/shared/common/crud/crud-facade-base.clas
 import { IEditComponent } from 'src/app/shared/common/crud/edit/edit-component.interface';
 import { IListComponent } from 'src/app/shared/common/crud/list/list-component.interface';
 import { ProductsState } from "./products.state";
-import { ProductsService } from 'src/app/api/products.service';
+// import { ProductsService } from 'src/app/api/products.service';
+import { ProductsService } from 'src/app/api/nest-service/services';
 import { finalize } from 'rxjs';
 import { NotificationsService } from 'src/app/shared/common/notifications.service';
 
@@ -23,7 +24,7 @@ implements IListComponent<any>, IEditComponent<any> {
 
   loadList(filters: any): void {
     this.productsState.setLoading(true);
-    this.productsService.getProductsList()
+    this.productsService.productsControllerFindAll(filters)
         .pipe(finalize(() => this.productsState.setLoading(false)))
         .subscribe((res) => {
             this.productsState.setList(res.content);
@@ -35,6 +36,26 @@ implements IListComponent<any>, IEditComponent<any> {
   }
 
   loadById(id: string): void {
-    throw new Error('Method not implemented.');
+    this.productsState.setLoadingSingle(true);
+    this.productsService.productsControllerFindOne({id})
+        .pipe(finalize(() => this.productsState.setLoadingSingle(false)))
+        .subscribe((res) => {
+          this.productsState.setSingle(res);
+        },
+        (err) => {
+            this.notificationsService.error(err.error.message, 'Error');
+        })
   }
+
+  post(body): void {
+    this.productsService.productsControllerCreate({body})
+        .pipe()
+        .subscribe((res) => {
+          this.loadList({ page: 1, limit: 10 });
+        },
+        (err) => {
+            this.notificationsService.error(err.error.message, 'Error');
+        })
+  }
+
 }

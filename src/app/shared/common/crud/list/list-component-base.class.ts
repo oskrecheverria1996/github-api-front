@@ -22,6 +22,9 @@ export abstract class ListComponentBase<T> implements OnDestroy {
 
     screenClasses: string; //Resize p-table
 
+    currentPage: number = 1;
+    limit: number = 10;
+
     constructor(private currentFacade: IListComponent<T>) {
         this.page$ = this.currentFacade.getPage$();
         this.isLoading$ = this.currentFacade.isLoading$();
@@ -29,7 +32,7 @@ export abstract class ListComponentBase<T> implements OnDestroy {
         this.resetSearchSortCriteria();
 
         this.subscription.add(
-            this.currentFacade.loadList('{}'),
+            this.currentFacade.loadList({ page: this.currentPage, limit: this.limit }),
 
             // this.currentFacade
             //     .searchCriteriaHasChanged$()
@@ -40,42 +43,28 @@ export abstract class ListComponentBase<T> implements OnDestroy {
     }
 
     loadByCriteria(filters?: any) {
-        // this.currentFacade.changeSearchCriteria(filters);
+        
     }
 
     changePage(pageEvent) {
-        // this.currentFacade.changePage(pageEvent);
+        this.currentPage = pageEvent.first
+        let filters = {
+            page: pageEvent.page + 1,
+            limit: pageEvent.rows
+        }
+        this.currentFacade.loadList(filters);
     }
 
     customSort(event: SortEvent) {
-        // if (
-        //     event.field !== this.currentSortField ||
-        //     event.order !== this.currentSortOrder
-        // ) {
-        //     this.currentSortField = event.field;
-        //     this.currentSortOrder = event.order;
-        //     this.currentFacade.changeSort(event);
-        // }
+
     }
 
     clearSearch($event?) {
-        // if (
-        //     this.params?.search === undefined ||
-        //     (this.params.search.constructor === Object &&
-        //         Object.keys(this.params.search).length !== 0)
-        // ) {
-        //     this.resetSearchSortCriteria();
-        //     this.currentFacade.changeSearchCriteria(this.params.search);
-        // }
+
     }
 
     resetSearchSortCriteria() {
-        this.params = {
-            search: {
-            },
-        };
-        this.currentSortField = null;
-        this.currentSortOrder = null;
+
     }
 
     searchByCriteria() {
