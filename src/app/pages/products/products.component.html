@@ -15,12 +15,14 @@
             <tr>
                 <th>ID</th>
                 <th>Product</th>
+                <th>Actions</th>
             </tr>
         </ng-template>
         <ng-template pTemplate="body" let-product>
             <tr [pSelectableRow]="product">
                 <td>{{ product.id }}</td>
                 <td>{{ product.name }}</td>
+                <td><button class="btn" (click)="delete(product, event$)">Eliminar</button></td>
             </tr>
         </ng-template>
       </p-table>

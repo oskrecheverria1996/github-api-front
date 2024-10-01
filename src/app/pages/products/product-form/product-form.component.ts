@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 
 @Component({
   selector: 'app-product-form',
@@ -7,12 +7,20 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ProductFormComponent implements OnInit {
 
+  @Input() product: any;
+
+  @Output() onSave?: EventEmitter<any> = new EventEmitter();
+
   constructor() { }
 
   ngOnInit(): void {
   }
 
   onSaveModal(event) {
+    this.onSave.emit(this.product);
+  }
+
+  modelChange(event) {
     
   }
 

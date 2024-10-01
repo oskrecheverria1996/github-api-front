@@ -21,13 +21,15 @@ import { ProductsFacade } from "./products.facade";
 import { ProductsState } from "./products.state";
 import { ProductFormComponent } from './product-form/product-form.component';
 import { CreateProductComponent } from './create-product/create-product.component';
+import { UpdateProductComponent } from './update-product/update-product.component';
 
 
 @NgModule({
   declarations: [
     ProductsComponent,
     ProductFormComponent,
-    CreateProductComponent
+    CreateProductComponent,
+    UpdateProductComponent
   ],
   imports: [
     CommonModule,

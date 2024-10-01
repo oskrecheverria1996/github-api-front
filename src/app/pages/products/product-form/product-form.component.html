@@ -1,6 +1,55 @@
 <app-modal (save)="onSaveModal($event)">
     <!-- BODY-->
     <div modal-body>
-        Hola mundooo
+        <form #productForm="ngForm" name="productForm" class="form-horizontal">
+            <div class="row pb-2">
+                <label class="col-sm-4 col-form-label text-right">
+                    Nombre
+                </label>
+                <div class="col-sm-6">
+                    <input
+                    type="text"
+                    name="name"
+                    id="name"
+                    class="form-control form-control-sm"
+                    [(ngModel)]="product.name"
+                    (ngModelChange)="modelChange($event)"
+                    #name="ngModel"
+                    placeholder="Nombre">
+                </div>
+            </div>
+            <div class="row pb-2">
+                <label class="col-sm-4 col-form-label text-right">
+                    Precio
+                </label>
+                <div class="col-sm-6">
+                    <input
+                    type="text"
+                    name="price"
+                    id="price"
+                    class="form-control form-control-sm"
+                    [(ngModel)]="product.price"
+                    (ngModelChange)="modelChange($event)"
+                    #price="ngModel"
+                    placeholder="Price">
+                </div>
+            </div>
+            <div class="row pb-2">
+                <label class="col-sm-4 col-form-label text-right">
+                    Descripcion
+                </label>
+                <div class="col-sm-6">
+                    <input
+                    type="text"
+                    name="description"
+                    id="description"
+                    class="form-control form-control-sm"
+                    [(ngModel)]="product.description"
+                    (ngModelChange)="modelChange($event)"
+                    #description="ngModel"
+                    placeholder="description">
+                </div>
+            </div>
+        </form>
     </div>
 </app-modal>

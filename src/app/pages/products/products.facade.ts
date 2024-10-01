@@ -58,4 +58,26 @@ implements IListComponent<any>, IEditComponent<any> {
         })
   }
 
+  patch(id, body): void {
+    this.productsService.productsControllerUpdate({id, body})
+        .pipe()
+        .subscribe((res) => {
+          this.loadList({ page: 1, limit: 10 })
+        },
+        (err) => {
+          this.notificationsService.error(err.error.message, 'Error');
+        })
+  }
+
+  delete(id): void {
+    this.productsService.productsControllerRemove({id})
+        .pipe()
+        .subscribe((res) => {
+          this.loadList({ page: 1, limit: 10 })
+        },
+        (err) => {
+          this.notificationsService.error(err.error.message, 'Error');
+        })
+  }
+
 }

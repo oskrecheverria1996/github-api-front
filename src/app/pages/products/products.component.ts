@@ -4,6 +4,7 @@ import { ListComponentBase } from 'src/app/shared/common/crud/list/list-componen
 import { ProductsFacade } from "./products.facade";
 import { ModalService } from 'src/app/shared/services/modal.service';
 import { CreateProductComponent } from './create-product/create-product.component';
+import { UpdateProductComponent } from './update-product/update-product.component';
 
 @Component({
   selector: 'app-products',
@@ -32,10 +33,13 @@ export class ProductsComponent
     );
   }
   delete(element: any, event: Event) {
-    throw new Error('Method not implemented.');
+    this.productsFacade.delete(element.id);
   }
   edit(element: any, event: Event) {
-    throw new Error('Method not implemented.');
+    this.modalService.loadComponent(UpdateProductComponent, 
+      element.data,
+      { size: "lg", container: "body" }
+    );
   }
   clone(element: any, event: Event) {
     throw new Error('Method not implemented.');
