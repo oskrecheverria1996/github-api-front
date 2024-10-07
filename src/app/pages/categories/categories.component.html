@@ -1,0 +1,49 @@
+<app-page-header>
+    <!-- <div class="col-2">
+      <button class="btn btn-info" style="padding: 0.25rem 0.5rem;" (click)="create($event)">Agregar</button>
+    </div>
+    <div class="col-4">
+      <input type="text"
+        class="form-control form-control-sm"
+        placeholder="Buscar"
+        [(ngModel)]="params.search"
+        (input)="searchByCriteria()">
+    </div> -->
+</app-page-header>
+<app-page-body>
+    <b *ngIf="(isLoading$ | async)">Cargando...</b>
+    <div *ngIf="!(isLoading$ | async)">
+      <p-table 
+        [value]="listResult$ | async"
+        [paginator]="false"
+        [rows]="10"
+        (onRowSelect)="edit($event)"
+        selectionMode="single"
+        [tableStyle]="{ 'min-width': '100%' }">
+        <ng-template pTemplate="header">
+            <tr>
+                <th>Category</th>
+                <th>Description</th>
+                <th>Actions</th>
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-category>
+            <tr [pSelectableRow]="category">
+                <td>{{ category.name }}</td>
+                <td>{{ category.description }}</td>
+                <td><button class="btn" (click)="delete(category, event$)">Eliminar</button></td>
+            </tr>
+        </ng-template>
+      </p-table>
+      <!-- Pagination -->
+      <div *ngIf="page$ | async; let page">
+        <p-paginator
+          [first]="currentPage"
+          [rows]="limit" 
+          [totalRecords]="page?.total" 
+          (onPageChange)="changePage($event)" 
+          [rowsPerPageOptions]="[10, 20, 30]">
+        </p-paginator>
+      </div>
+    </div>
+</app-page-body>

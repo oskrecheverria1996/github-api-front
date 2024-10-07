@@ -6,14 +6,14 @@ import { filter, map } from 'rxjs/operators';
 import { StrictHttpResponse } from '../../strict-http-response';
 import { RequestBuilder } from '../../request-builder';
 
+import { Category } from '../../models/category';
 
-export interface ProductsControllerRemove$Params {
+export interface CategoriesControllerFindOne$Params {
   id: string;
 }
 
-export function productsControllerRemove(http: HttpClient, rootUrl: string, params: ProductsControllerRemove$Params, context?: HttpContext): Observable<StrictHttpResponse<{
-}>> {
-  const rb = new RequestBuilder(rootUrl, productsControllerRemove.PATH, 'delete');
+export function categoriesControllerFindOne(http: HttpClient, rootUrl: string, params: CategoriesControllerFindOne$Params, context?: HttpContext): Observable<StrictHttpResponse<Category>> {
+  const rb = new RequestBuilder(rootUrl, categoriesControllerFindOne.PATH, 'get');
   if (params) {
     rb.path('id', params.id, {});
   }
@@ -23,10 +23,9 @@ export function productsControllerRemove(http: HttpClient, rootUrl: string, para
   ).pipe(
     filter((r: any): r is HttpResponse<any> => r instanceof HttpResponse),
     map((r: HttpResponse<any>) => {
-      return r as StrictHttpResponse<{
-      }>;
+      return r as StrictHttpResponse<Category>;
     })
   );
 }
 
-productsControllerRemove.PATH = '/api/products/{id}';
+categoriesControllerFindOne.PATH = '/api/categories/{id}';

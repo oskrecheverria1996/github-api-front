@@ -134,6 +134,11 @@ paths:
           in: query
           schema:
             type: number
+        - name: search
+          required: true
+          in: query
+          schema:
+            type: string
       responses:
         default:
           description: The product records
@@ -198,9 +203,113 @@ paths:
           content:
             application/json:
               schema:
-                type: string
+                type: object
       tags:
         - products
+  /api/categories:
+    post:
+      operationId: CategoriesController_create
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateCategoryDto'
+      responses:
+        default:
+          description: Create category
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Category'
+      tags:
+        - categories
+    get:
+      operationId: CategoriesController_findAll
+      parameters:
+        - name: limit
+          required: true
+          in: query
+          schema:
+            type: number
+        - name: page
+          required: true
+          in: query
+          schema:
+            type: number
+        - name: search
+          required: true
+          in: query
+          schema:
+            type: string
+      responses:
+        default:
+          description: The category records
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PaginatedResponseDto'
+      tags:
+        - categories
+  /api/categories/{id}:
+    get:
+      operationId: CategoriesController_findOne
+      parameters:
+        - name: id
+          required: true
+          in: path
+          schema:
+            type: string
+      responses:
+        default:
+          description: Get a product
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Category'
+      tags:
+        - categories
+    patch:
+      operationId: CategoriesController_update
+      parameters:
+        - name: id
+          required: true
+          in: path
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateCategoryDto'
+      responses:
+        default:
+          description: Get a product
+          content:
+            application/json:
+              schema:
+                type: object
+      tags:
+        - categories
+    delete:
+      operationId: CategoriesController_remove
+      parameters:
+        - name: id
+          required: true
+          in: path
+          schema:
+            type: string
+      responses:
+        default:
+          description: Delete a product
+          content:
+            application/json:
+              schema:
+                type: object
+      tags:
+        - categories
 info:
   title: Mi Api documentation
   description: Esta es una Api
@@ -294,12 +403,15 @@ components:
           type: string
         user:
           type: string
+        category:
+          type: string
       required:
         - name
         - available
         - price
         - description
         - user
+        - category
     PageDto:
       type: object
       properties:
@@ -351,6 +463,40 @@ components:
           type: string
         price:
           type: number
+        description:
+          type: string
+        available:
+          type: boolean
+      required:
+        - available
+    Category:
+      type: object
+      properties:
+        name:
+          type: string
+        description:
+          type: string
+        available:
+          type: boolean
+      required:
+        - name
+        - description
+        - available
+    CreateCategoryDto:
+      type: object
+      properties:
+        name:
+          type: string
+        description:
+          type: string
+      required:
+        - name
+        - description
+    UpdateCategoryDto:
+      type: object
+      properties:
+        name:
+          type: string
         description:
           type: string
         available:

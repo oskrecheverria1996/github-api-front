@@ -41,8 +41,5 @@ export class ProductsComponent
       { size: "lg", container: "body" }
     );
   }
-  clone(element: any, event: Event) {
-    throw new Error('Method not implemented.');
-  }
 
 }

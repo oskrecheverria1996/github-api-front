@@ -4,6 +4,28 @@
         <form #productForm="ngForm" name="productForm" class="form-horizontal">
             <div class="row pb-2">
                 <label class="col-sm-4 col-form-label text-right">
+                    Category
+                </label>
+                <div class="col-sm-6">
+                    <ng-select [items]="categories$ | async" [loading]="isLoadingCategories$ | async"
+                        name="category" #category="ngModel" bindValue="id" bindLabel="name"
+                        [(ngModel)]="product.category"
+                        placeholder="Seleccione una categoria"
+                        (change)="modelChange($event)">
+                        <!-- <ng-template ng-label-tmp let-item="item">
+                            {{ item.name }}
+                            <small *ngIf="item.version">
+                                - {{ item?.version }}</small>
+                        </ng-template>
+                        <ng-template ng-option-tmp let-item="item">{{ item.name }}
+                            <small *ngIf="item.version">
+                                - {{ item?.version }}</small>
+                        </ng-template> -->
+                    </ng-select>
+                </div>
+            </div>
+            <div class="row pb-2">
+                <label class="col-sm-4 col-form-label text-right">
                     Nombre
                 </label>
                 <div class="col-sm-6">

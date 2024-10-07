@@ -1,10 +1,7 @@
 /* tslint:disable */
 /* eslint-disable */
-export interface Product {
+export interface Category {
   available: boolean;
-  category: string;
   description: string;
   name: string;
-  price: number;
-  user: string;
 }

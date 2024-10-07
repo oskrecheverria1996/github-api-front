@@ -7,13 +7,13 @@ import { StrictHttpResponse } from '../../strict-http-response';
 import { RequestBuilder } from '../../request-builder';
 
 
-export interface ProductsControllerRemove$Params {
+export interface CategoriesControllerRemove$Params {
   id: string;
 }
 
-export function productsControllerRemove(http: HttpClient, rootUrl: string, params: ProductsControllerRemove$Params, context?: HttpContext): Observable<StrictHttpResponse<{
+export function categoriesControllerRemove(http: HttpClient, rootUrl: string, params: CategoriesControllerRemove$Params, context?: HttpContext): Observable<StrictHttpResponse<{
 }>> {
-  const rb = new RequestBuilder(rootUrl, productsControllerRemove.PATH, 'delete');
+  const rb = new RequestBuilder(rootUrl, categoriesControllerRemove.PATH, 'delete');
   if (params) {
     rb.path('id', params.id, {});
   }
@@ -29,4 +29,4 @@ export function productsControllerRemove(http: HttpClient, rootUrl: string, para
   );
 }
 
-productsControllerRemove.PATH = '/api/products/{id}';
+categoriesControllerRemove.PATH = '/api/categories/{id}';

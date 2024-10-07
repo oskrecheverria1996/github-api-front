@@ -11,7 +11,7 @@ export abstract class CrudFacadeBase<T> {
     constructor(private currentState: ICrudState<T>) { }
 
     
-    getList$(): Observable<any[]> {
+    getList$(): Observable<T[]> {
         return this.currentState.getList$();
     }
 

@@ -112,7 +112,8 @@ export class ProductsService extends BaseService {
    *
    * This method doesn't expect any request body.
    */
-  productsControllerRemove$Response(params: ProductsControllerRemove$Params, context?: HttpContext): Observable<StrictHttpResponse<string>> {
+  productsControllerRemove$Response(params: ProductsControllerRemove$Params, context?: HttpContext): Observable<StrictHttpResponse<{
+}>> {
     return productsControllerRemove(this.http, this.rootUrl, params, context);
   }
 
@@ -122,9 +123,12 @@ export class ProductsService extends BaseService {
    *
    * This method doesn't expect any request body.
    */
-  productsControllerRemove(params: ProductsControllerRemove$Params, context?: HttpContext): Observable<string> {
+  productsControllerRemove(params: ProductsControllerRemove$Params, context?: HttpContext): Observable<{
+}> {
     return this.productsControllerRemove$Response(params, context).pipe(
-      map((r: StrictHttpResponse<string>): string => r.body)
+      map((r: StrictHttpResponse<{
+}>): {
+} => r.body)
     );
   }
 

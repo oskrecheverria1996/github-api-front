@@ -6,16 +6,19 @@ import { filter, map } from 'rxjs/operators';
 import { StrictHttpResponse } from '../../strict-http-response';
 import { RequestBuilder } from '../../request-builder';
 
+import { UpdateCategoryDto } from '../../models/update-category-dto';
 
-export interface ProductsControllerRemove$Params {
+export interface CategoriesControllerUpdate$Params {
   id: string;
+      body: UpdateCategoryDto
 }
 
-export function productsControllerRemove(http: HttpClient, rootUrl: string, params: ProductsControllerRemove$Params, context?: HttpContext): Observable<StrictHttpResponse<{
+export function categoriesControllerUpdate(http: HttpClient, rootUrl: string, params: CategoriesControllerUpdate$Params, context?: HttpContext): Observable<StrictHttpResponse<{
 }>> {
-  const rb = new RequestBuilder(rootUrl, productsControllerRemove.PATH, 'delete');
+  const rb = new RequestBuilder(rootUrl, categoriesControllerUpdate.PATH, 'patch');
   if (params) {
     rb.path('id', params.id, {});
+    rb.body(params.body, 'application/json');
   }
 
   return http.request(
@@ -29,4 +32,4 @@ export function productsControllerRemove(http: HttpClient, rootUrl: string, para
   );
 }
 
-productsControllerRemove.PATH = '/api/products/{id}';
+categoriesControllerUpdate.PATH = '/api/categories/{id}';

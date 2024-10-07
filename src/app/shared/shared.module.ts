@@ -7,6 +7,7 @@ import { ModalService } from "./services/modal.service";
 import { DelayInputDirective } from './directives/delay-input.directive';
 import { PageHeaderComponent } from './components/page-header/page-header.component';
 import { PageBodyComponent } from './components/page-body/page-body.component';
+import { NgSelectModule } from "@ng-select/ng-select";
 // import { ButtonsModule } from "ngx-bootstrap";
 
 @NgModule({
@@ -20,6 +21,7 @@ import { PageBodyComponent } from './components/page-body/page-body.component';
     CommonModule,
     FormsModule,
     NgbModule,
+    NgSelectModule,
     // ButtonsModule,
   ],
   providers: [
@@ -28,7 +30,8 @@ import { PageBodyComponent } from './components/page-body/page-body.component';
   exports: [
     ModalComponent,
     PageHeaderComponent,
-    PageBodyComponent
+    PageBodyComponent,
+    NgSelectModule
   ]
 })
 export class SharedModule { }
