@@ -11,6 +11,7 @@ import { PaginatedResponseDto } from '../../models/paginated-response-dto';
 export interface ProductsControllerFindAll$Params {
   limit: number;
   page: number;
+  search: string;
 }
 
 export function productsControllerFindAll(http: HttpClient, rootUrl: string, params: ProductsControllerFindAll$Params, context?: HttpContext): Observable<StrictHttpResponse<PaginatedResponseDto>> {
@@ -18,6 +19,7 @@ export function productsControllerFindAll(http: HttpClient, rootUrl: string, par
   if (params) {
     rb.query('limit', params.limit, {});
     rb.query('page', params.page, {});
+    rb.query('search', params.search, {});
   }
 
   return http.request(

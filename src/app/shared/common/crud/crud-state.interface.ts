@@ -11,4 +11,7 @@ export interface ICrudState<T> {
     getSingle$(): Observable<T>;
     getPage$(): Observable<Page>;
     setPage(page): void;
+
+    searchCriteriaHasChanged$(): Observable<any>;
+    setRqlFilter(rql: any);
 }

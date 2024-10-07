@@ -80,4 +80,24 @@ implements IListComponent<any>, IEditComponent<any> {
         })
   }
 
+  changeSearchCriteria(searchCriteria?: any): void {
+    let filters
+    if (searchCriteria !== undefined && searchCriteria !== null && Object.keys(searchCriteria).length !== 0) {
+      filters = {
+        ...this.productsState.getRqlFilterValue(),
+        // search: searchCriteria,
+      //   search: JSON.stringify({
+      //     $and: [
+      //      {
+      //        name: {
+      //            $regex: searchCriteria,
+      //        },
+      //      },
+      //    ],
+      //  })
+      };
+    }
+    this.productsState.setRqlFilter(filters);
+  }
+
 }

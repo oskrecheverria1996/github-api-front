@@ -23,7 +23,7 @@ export class ProductsComponent
   }
 
   ngOnInit(): void {
-    
+    this.loadByCriteria()
   }
 
   create(element?: any): void {

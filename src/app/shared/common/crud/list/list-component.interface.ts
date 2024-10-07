@@ -6,5 +6,8 @@ export interface IListComponent<T> {
     loadList(filters): void;
     getList$(): Observable<T[]>;
     getPage$(): Observable<Page>;
-    // changePage(pageEvent): void;
+
+    changeSearchCriteria(searchCriteria?: any): void;
+    searchCriteriaHasChanged$(): Observable<any>;
+    changePage(page): void;
 }

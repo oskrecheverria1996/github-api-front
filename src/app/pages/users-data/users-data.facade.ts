@@ -24,7 +24,6 @@ export class UsersDataFacade
         super(usersDataState)
      }
      
-
     // ILIST
 
     loadList(q?: any): void {
@@ -57,6 +56,10 @@ export class UsersDataFacade
                 this.notificationsService.error(err.error.message, 'Error')
             }
         )
+    }
+
+    changeSearchCriteria(searchCriteria?: any): void {
+        throw new Error("Method not implemented.");
     }
        
 }

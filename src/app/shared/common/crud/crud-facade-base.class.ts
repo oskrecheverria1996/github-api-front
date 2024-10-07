@@ -55,4 +55,15 @@ export abstract class CrudFacadeBase<T> {
     //     this.currentState.setSubmitResult(null);
     // }
 
+    searchCriteriaHasChanged$() {
+        return this.currentState.searchCriteriaHasChanged$();
+    }
+
+    changePage(page): void {
+        this.currentState.setRqlFilter({
+            page: page.page + 1,
+            limit: page.rows
+        })
+    }
+
 }

@@ -16,7 +16,9 @@ export abstract class ListComponentBase<T> implements OnDestroy {
     isLoading$: Observable<boolean>;
     page$: Observable<Page>;
 
-    params: any;
+    params: any = {
+        search: ''
+    };
     currentSortField: string;
     currentSortOrder: number;
 
@@ -31,28 +33,26 @@ export abstract class ListComponentBase<T> implements OnDestroy {
         this.listResult$ = this.currentFacade.getList$();
         this.resetSearchSortCriteria();
 
-        this.subscription.add(
-            this.currentFacade.loadList({ page: this.currentPage, limit: this.limit }),
-
-            // this.currentFacade
-            //     .searchCriteriaHasChanged$()
-            //     .subscribe((criteria) => {
-            //         this.currentFacade.loadList(criteria);
-            //     })
-        );
+        // this.subscription.add(
+        //     this.currentFacade.loadList({ page: this.currentPage, limit: this.limit }),
+        // );
+        this.subscription.add( 
+            this.currentFacade
+                .searchCriteriaHasChanged$()
+                .subscribe((criteria) => {
+                    console.log(criteria);
+                    this.currentFacade.loadList(criteria);
+                })
+        )
     }
 
     loadByCriteria(filters?: any) {
-        
+        this.currentFacade.changeSearchCriteria(filters);
     }
 
     changePage(pageEvent) {
         this.currentPage = pageEvent.first
-        let filters = {
-            page: pageEvent.page + 1,
-            limit: pageEvent.rows
-        }
-        this.currentFacade.loadList(filters);
+        this.currentFacade.changePage(pageEvent);
     }
 
     customSort(event: SortEvent) {
