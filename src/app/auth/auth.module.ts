@@ -6,12 +6,14 @@ import { AuthRoutes } from './auth.routing';
 import { LoginComponent } from "./login/login.component";
 import { AuthLayoutComponent } from './auth-layout/auth-layout.component';
 import { NgbModule } from "@ng-bootstrap/ng-bootstrap";
+import { SigninComponent } from './signin/signin.component';
 
 
 @NgModule({
   declarations: [
     LoginComponent,
-    AuthLayoutComponent
+    AuthLayoutComponent,
+    SigninComponent
   ],
   imports: [
     CommonModule,

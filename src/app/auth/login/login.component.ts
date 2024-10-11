@@ -3,6 +3,7 @@ import { LoginUserDto } from "../../api/nest-service/models/login-user-dto";
 import { AuthService } from 'src/app/api/nest-service/services';
 import { Router } from '@angular/router';
 import { JwtSessionService } from 'src/app/shared/common/jwt-session.service';
+import { NotificationsService } from 'src/app/shared/common/notifications.service';
 
 @Component({
   selector: 'app-login',
@@ -19,7 +20,8 @@ export class LoginComponent implements OnInit {
   constructor(
     private authService: AuthService,
     public router: Router,
-    public jwtService: JwtSessionService) { }
+    public jwtService: JwtSessionService,
+    private notificationsService: NotificationsService,) { }
 
   ngOnInit(): void {
   }
@@ -35,7 +37,7 @@ export class LoginComponent implements OnInit {
       this.router.navigateByUrl('home');
     },
     (err) => {
-
+      this.notificationsService.error(err.error.message, 'Error');
     })
   }
 

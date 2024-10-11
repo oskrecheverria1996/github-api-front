@@ -10,6 +10,7 @@ import { ApiConfiguration } from '../api-configuration';
 import { StrictHttpResponse } from '../strict-http-response';
 
 import { LoginResponseDto } from '../models/login-response-dto';
+import { User } from '../models/user';
 import { usersControllerCreate } from '../fn/auth/users-controller-create';
 import { UsersControllerCreate$Params } from '../fn/auth/users-controller-create';
 import { usersControllerFindAll } from '../fn/auth/users-controller-find-all';
@@ -22,6 +23,8 @@ import { usersControllerRemove } from '../fn/auth/users-controller-remove';
 import { UsersControllerRemove$Params } from '../fn/auth/users-controller-remove';
 import { usersControllerUpdate } from '../fn/auth/users-controller-update';
 import { UsersControllerUpdate$Params } from '../fn/auth/users-controller-update';
+import { usersControllerValidateEmail } from '../fn/auth/users-controller-validate-email';
+import { UsersControllerValidateEmail$Params } from '../fn/auth/users-controller-validate-email';
 
 @Injectable({ providedIn: 'root' })
 export class AuthService extends BaseService {
@@ -38,7 +41,7 @@ export class AuthService extends BaseService {
    *
    * This method sends `application/json` and handles request body of type `application/json`.
    */
-  usersControllerCreate$Response(params: UsersControllerCreate$Params, context?: HttpContext): Observable<StrictHttpResponse<void>> {
+  usersControllerCreate$Response(params: UsersControllerCreate$Params, context?: HttpContext): Observable<StrictHttpResponse<LoginResponseDto>> {
     return usersControllerCreate(this.http, this.rootUrl, params, context);
   }
 
@@ -48,9 +51,9 @@ export class AuthService extends BaseService {
    *
    * This method sends `application/json` and handles request body of type `application/json`.
    */
-  usersControllerCreate(params: UsersControllerCreate$Params, context?: HttpContext): Observable<void> {
+  usersControllerCreate(params: UsersControllerCreate$Params, context?: HttpContext): Observable<LoginResponseDto> {
     return this.usersControllerCreate$Response(params, context).pipe(
-      map((r: StrictHttpResponse<void>): void => r.body)
+      map((r: StrictHttpResponse<LoginResponseDto>): LoginResponseDto => r.body)
     );
   }
 
@@ -163,7 +166,7 @@ export class AuthService extends BaseService {
    *
    * This method sends `application/json` and handles request body of type `application/json`.
    */
-  usersControllerUpdate$Response(params: UsersControllerUpdate$Params, context?: HttpContext): Observable<StrictHttpResponse<void>> {
+  usersControllerUpdate$Response(params: UsersControllerUpdate$Params, context?: HttpContext): Observable<StrictHttpResponse<User>> {
     return usersControllerUpdate(this.http, this.rootUrl, params, context);
   }
 
@@ -173,8 +176,33 @@ export class AuthService extends BaseService {
    *
    * This method sends `application/json` and handles request body of type `application/json`.
    */
-  usersControllerUpdate(params: UsersControllerUpdate$Params, context?: HttpContext): Observable<void> {
+  usersControllerUpdate(params: UsersControllerUpdate$Params, context?: HttpContext): Observable<User> {
     return this.usersControllerUpdate$Response(params, context).pipe(
+      map((r: StrictHttpResponse<User>): User => r.body)
+    );
+  }
+
+  /** Path part for operation `usersControllerValidateEmail()` */
+  static readonly UsersControllerValidateEmailPath = '/api/auth/validate-email/{token}';
+
+  /**
+   * This method provides access to the full `HttpResponse`, allowing access to response headers.
+   * To access only the response body, use `usersControllerValidateEmail()` instead.
+   *
+   * This method doesn't expect any request body.
+   */
+  usersControllerValidateEmail$Response(params: UsersControllerValidateEmail$Params, context?: HttpContext): Observable<StrictHttpResponse<void>> {
+    return usersControllerValidateEmail(this.http, this.rootUrl, params, context);
+  }
+
+  /**
+   * This method provides access only to the response body.
+   * To access the full response (for headers, for example), `usersControllerValidateEmail$Response()` instead.
+   *
+   * This method doesn't expect any request body.
+   */
+  usersControllerValidateEmail(params: UsersControllerValidateEmail$Params, context?: HttpContext): Observable<void> {
+    return this.usersControllerValidateEmail$Response(params, context).pipe(
       map((r: StrictHttpResponse<void>): void => r.body)
     );
   }

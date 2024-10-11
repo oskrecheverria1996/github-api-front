@@ -31,6 +31,7 @@ import { NgSelectModule } from "@ng-select/ng-select";
     ModalComponent,
     PageHeaderComponent,
     PageBodyComponent,
+    DelayInputDirective,
     NgSelectModule
   ]
 })

@@ -20,7 +20,23 @@ paths:
               $ref: '#/components/schemas/CreateUserDto'
       responses:
         '201':
+          description: User register response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LoginResponseDto'
+        '400':
           description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseDto'
+        '401':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseDto'
       tags:
         - auth
   /api/auth/login:
@@ -40,6 +56,18 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/LoginResponseDto'
+        '400':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseDto'
+        '401':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseDto'
       tags:
         - auth
   /api/auth:
@@ -49,6 +77,18 @@ paths:
       responses:
         '200':
           description: ''
+        '400':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseDto'
+        '401':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseDto'
       tags:
         - auth
   /api/auth/{id}:
@@ -63,6 +103,18 @@ paths:
       responses:
         '200':
           description: ''
+        '400':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseDto'
+        '401':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseDto'
       tags:
         - auth
     patch:
@@ -81,7 +133,23 @@ paths:
               $ref: '#/components/schemas/UpdateUserDto'
       responses:
         '200':
+          description: User update response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+        '400':
           description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseDto'
+        '401':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseDto'
       tags:
         - auth
     delete:
@@ -95,6 +163,44 @@ paths:
       responses:
         '200':
           description: ''
+        '400':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseDto'
+        '401':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseDto'
+      tags:
+        - auth
+  /api/auth/validate-email/{token}:
+    get:
+      operationId: UsersController_validateEmail
+      parameters:
+        - name: token
+          required: true
+          in: path
+          schema:
+            type: string
+      responses:
+        '200':
+          description: ''
+        '400':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseDto'
+        '401':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseDto'
       tags:
         - auth
   /api/products:
@@ -113,6 +219,18 @@ paths:
             schema:
               $ref: '#/components/schemas/CreateProductDto'
       responses:
+        '400':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseDto'
+        '401':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseDto'
         default:
           description: Create a product
           content:
@@ -140,6 +258,18 @@ paths:
           schema:
             type: string
       responses:
+        '400':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseDto'
+        '401':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseDto'
         default:
           description: The product records
           content:
@@ -158,6 +288,18 @@ paths:
           schema:
             type: string
       responses:
+        '400':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseDto'
+        '401':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseDto'
         default:
           description: Get a product
           content:
@@ -181,6 +323,18 @@ paths:
             schema:
               $ref: '#/components/schemas/UpdateProductDto'
       responses:
+        '400':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseDto'
+        '401':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseDto'
         default:
           description: Get a product
           content:
@@ -198,6 +352,18 @@ paths:
           schema:
             type: string
       responses:
+        '400':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseDto'
+        '401':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseDto'
         default:
           description: Delete a product
           content:
@@ -217,6 +383,18 @@ paths:
             schema:
               $ref: '#/components/schemas/CreateCategoryDto'
       responses:
+        '400':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseDto'
+        '401':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseDto'
         default:
           description: Create category
           content:
@@ -244,12 +422,24 @@ paths:
           schema:
             type: string
       responses:
-        default:
+        '200':
           description: The category records
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/PaginatedResponseDto'
+        '400':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseDto'
+        '401':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseDto'
       tags:
         - categories
   /api/categories/{id}:
@@ -262,12 +452,24 @@ paths:
           schema:
             type: string
       responses:
-        default:
+        '200':
           description: Get a product
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/Category'
+        '400':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseDto'
+        '401':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseDto'
       tags:
         - categories
     patch:
@@ -285,12 +487,24 @@ paths:
             schema:
               $ref: '#/components/schemas/UpdateCategoryDto'
       responses:
-        default:
+        '200':
           description: Get a product
           content:
             application/json:
               schema:
                 type: object
+        '400':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseDto'
+        '401':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseDto'
       tags:
         - categories
     delete:
@@ -302,12 +516,24 @@ paths:
           schema:
             type: string
       responses:
-        default:
+        '200':
           description: Delete a product
           content:
             application/json:
               schema:
                 type: object
+        '400':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseDto'
+        '401':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseDto'
       tags:
         - categories
 info:
@@ -327,19 +553,19 @@ components:
       type: http
       scheme: basic
   schemas:
-    CreateUserDto:
+    ErrorResponseDto:
       type: object
       properties:
-        name:
+        message:
           type: string
-        email:
+        error:
           type: string
-        password:
-          type: string
+        statusCode:
+          type: number
       required:
-        - name
-        - email
-        - password
+        - message
+        - error
+        - statusCode
     User:
       type: object
       properties:
@@ -377,6 +603,19 @@ components:
       required:
         - token
         - user
+    CreateUserDto:
+      type: object
+      properties:
+        name:
+          type: string
+        email:
+          type: string
+        password:
+          type: string
+      required:
+        - name
+        - email
+        - password
     LoginUserDto:
       type: object
       properties:
@@ -390,28 +629,6 @@ components:
     UpdateUserDto:
       type: object
       properties: {}
-    Product:
-      type: object
-      properties:
-        name:
-          type: string
-        available:
-          type: boolean
-        price:
-          type: number
-        description:
-          type: string
-        user:
-          type: string
-        category:
-          type: string
-      required:
-        - name
-        - available
-        - price
-        - description
-        - user
-        - category
     PageDto:
       type: object
       properties:
@@ -443,6 +660,28 @@ components:
       required:
         - page
         - content
+    Product:
+      type: object
+      properties:
+        name:
+          type: string
+        available:
+          type: boolean
+        price:
+          type: number
+        description:
+          type: string
+        user:
+          type: string
+        category:
+          type: string
+      required:
+        - name
+        - available
+        - price
+        - description
+        - user
+        - category
     CreateProductDto:
       type: object
       properties:

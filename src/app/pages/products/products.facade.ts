@@ -86,15 +86,15 @@ implements IListComponent<any>, IEditComponent<any> {
       filters = {
         ...this.productsState.getRqlFilterValue(),
         // search: searchCriteria,
-      //   search: JSON.stringify({
-      //     $and: [
-      //      {
-      //        name: {
-      //            $regex: searchCriteria,
-      //        },
-      //      },
-      //    ],
-      //  })
+        search: JSON.stringify({
+          $and: [
+           {
+             name: {
+                 $regex: searchCriteria,
+             },
+           },
+         ],
+       })
       };
     }
     this.productsState.setRqlFilter(filters);

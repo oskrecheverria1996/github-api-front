@@ -4,6 +4,7 @@ export { Category } from './models/category';
 export { CreateCategoryDto } from './models/create-category-dto';
 export { CreateProductDto } from './models/create-product-dto';
 export { CreateUserDto } from './models/create-user-dto';
+export { ErrorResponseDto } from './models/error-response-dto';
 export { LoginResponseDto } from './models/login-response-dto';
 export { LoginUserDto } from './models/login-user-dto';
 export { PageDto } from './models/page-dto';
