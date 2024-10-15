@@ -12,6 +12,7 @@ import { ClipboardModule } from 'ngx-clipboard';
 import { RouterModule } from "@angular/router";
 import { TableModule } from 'primeng/table';
 import { PaginatorModule } from "primeng/paginator";
+import { SharedModule } from '../shared/shared.module';
 // import { DashboardComponent } from "src/app/pages/dashboard/dashboard.component";
 
 @NgModule({
@@ -30,7 +31,8 @@ import { PaginatorModule } from "primeng/paginator";
     ClipboardModule,
     RouterModule,
     TableModule,
-    PaginatorModule
+    PaginatorModule,
+    SharedModule,
   ],
   exports: [
     FormsModule,

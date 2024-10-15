@@ -33,6 +33,8 @@
             ],
             "styles": [
               "src/styles.scss",
+              "src/assets/vendor/nucleo/css/nucleo.css",
+              "src/assets/vendor/@fortawesome/fontawesome-free/css/all.min.css",
               "src/assets/scss/argon.scss",
               "node_modules/primeicons/primeicons.css",
               "node_modules/primeng/resources/themes/mdc-light-indigo/theme.css",
