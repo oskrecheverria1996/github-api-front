@@ -2,6 +2,7 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Category } from 'src/app/api/nest-service/models';
 import { CategoriesFacade } from '../../categories/categories.facade';
+import { ModalData } from 'src/app/shared/components/modal/modal.component';
 
 @Component({
   selector: 'app-product-form',
@@ -11,6 +12,7 @@ import { CategoriesFacade } from '../../categories/categories.facade';
 export class ProductFormComponent implements OnInit {
 
   @Input() product: any;
+  @Input() data: ModalData;
 
   @Output() onSave?: EventEmitter<any> = new EventEmitter();
   

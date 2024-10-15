@@ -2,6 +2,7 @@ import { Component, EventEmitter, OnInit } from '@angular/core';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { ModalComponent } from 'src/app/shared/services/modal.service';
 import { ProductsFacade } from '../products.facade';
+import { ModalData } from 'src/app/shared/components/modal/modal.component';
 
 @Component({
   selector: 'app-create-product',
@@ -15,6 +16,9 @@ export class CreateProductComponent implements OnInit, ModalComponent {
     name: '',
     price: '',
     description: ''
+  }
+  modalData: ModalData = {
+    title: 'Nuevo producto'
   }
 
   constructor(

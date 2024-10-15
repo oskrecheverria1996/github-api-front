@@ -4,6 +4,8 @@ import { ICrudComponent } from 'src/app/shared/common/crud/crud-component.interf
 import { ListComponentBase } from 'src/app/shared/common/crud/list/list-component-base.class';
 import { ModalService } from 'src/app/shared/services/modal.service';
 import { CategoriesFacade } from './categories.facade';
+import { NewCategoryComponent } from './new-category/new-category.component';
+import { UpdateCategoryComponent } from './update-category/update-category.component';
 
 @Component({
   selector: 'app-categories',
@@ -26,13 +28,19 @@ export class CategoriesComponent
   }
 
   create(element?: Category): void {
-    throw new Error('Method not implemented.');
+    this.modalService.loadComponent(NewCategoryComponent, 
+      {  },
+      { size: "lg", container: "body" }
+    );
   }
   delete(element: Category, event: Event) {
     throw new Error('Method not implemented.');
   }
-  edit(element: Category, event: Event) {
-    throw new Error('Method not implemented.');
+  edit(element: any, event: Event) {
+    this.modalService.loadComponent(UpdateCategoryComponent, 
+      element.data,
+      { size: "lg", container: "body" }
+    );
   }
 
 

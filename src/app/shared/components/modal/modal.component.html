@@ -13,12 +13,7 @@
                                 <!-- ACTION TEXT -->
                                 <!-- <span *ngIf="data.action" class="bold ml-1" title="">{{
                                     data.action | translate
-                                }}</span>
-        
-                                <div
-                                    *ngIf="data.action && data.title"
-                                    class="header-separator"
-                                ></div> -->
+                                }}</span> -->
         
                                 <!-- FIX TITLE -->
                                 <!-- <span *ngIf="data.title" class="bold" title=""
@@ -29,56 +24,26 @@
                                     {{ data.refOwner }}</span
                                 > -->
         
-                                <!-- DYNAMIC TEXT -->
-                                <!-- <span *ngIf="data.dynamicText" title="">
-                                    ({{ data.dynamicText }})</span
-                                > -->
+                                <!-- TEXT -->
+                                <span *ngIf="data.title" title="">
+                                    {{ data.title }}</span
+                                >
                             </div>
                         </div>
                     </div>
                 </div>
                 <div class="col-2 text-right pl-0 pr-0">
-                    <!-- URL -->
-                    <!-- <a
-                        *ngIf="data.helpUrl"
-                        class="ml-2 mr-2 help-icon"
-                        title=""
-                        [href]="data.helpUrl"
-                        target="_blank"
-                        ><i class="fas fa-sm fa-question-circle"></i
-                    ></a> -->
-                    <!-- TOOLTIP -->
-                    <!-- <span
-                        *ngIf="data.helpTooltip"
-                        data-html="true"
-                        ngbTooltip="{{ data.helpTooltip | translate }}"
-                        class="ml-2 mr-2 help-icon"
-                    >
-                        <i class="far fa-sm fa-question-circle"></i>
-                    </span> -->
-        
                     <!-- CLOSE -->
-                    <!-- <span
-                        *ngIf="data.closeBtn || data.closeBtn === undefined"
+                    <span
                         (click)="activeModal.dismiss('close')"
                         class="mousepointer"
                     >
-                        <i class="iway-close"> </i>
-                    </span> -->
+                    X
+                        <!-- <i class="iway-close"> </i> -->
+                    </span>
                 </div>
             </div>
         </div>
-
-        <!-- CUSTOM HEADER -->
-        <!-- <div *ngIf="!header" class="inner-header">
-            <h6 class="modal-title" id="modal-title-default">
-                {{ title }}
-                <ng-content select="[modal-header]"></ng-content>
-            </h6>
-            <span (click)="activeModal.dismiss('close')">
-                <i class="iway-close"> </i>
-            </span>
-        </div> -->
     </div>
     <div>
         <div class="row">

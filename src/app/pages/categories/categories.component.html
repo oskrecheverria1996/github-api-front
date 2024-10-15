@@ -1,5 +1,5 @@
 <app-page-header>
-    <!-- <div class="col-2">
+    <div class="col-2">
       <button class="btn btn-info" style="padding: 0.25rem 0.5rem;" (click)="create($event)">Agregar</button>
     </div>
     <div class="col-4">
@@ -8,7 +8,7 @@
         placeholder="Buscar"
         [(ngModel)]="params.search"
         (input)="searchByCriteria()">
-    </div> -->
+    </div>
 </app-page-header>
 <app-page-body>
     <b *ngIf="(isLoading$ | async)">Cargando...</b>

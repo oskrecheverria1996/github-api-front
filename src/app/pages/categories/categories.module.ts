@@ -19,10 +19,16 @@ import { SharedModule } from 'src/app/shared/shared.module';
 import { CategoriesFacade } from './categories.facade';
 import { CategoriesState } from './categories.state';
 import { CategoriesRoutes } from './categories.routiing';
+import { CategoryFormComponent } from './category-form/category-form.component';
+import { NewCategoryComponent } from './new-category/new-category.component';
+import { UpdateCategoryComponent } from './update-category/update-category.component';
 
 @NgModule({
   declarations: [
-    CategoriesComponent
+    CategoriesComponent,
+    CategoryFormComponent,
+    NewCategoryComponent,
+    UpdateCategoryComponent
   ],
   imports: [
     CommonModule,

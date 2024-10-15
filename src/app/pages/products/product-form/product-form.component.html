@@ -1,4 +1,4 @@
-<app-modal (save)="onSaveModal($event)">
+<app-modal (save)="onSaveModal($event)" [data]="data">
     <!-- BODY-->
     <div modal-body>
         <form #productForm="ngForm" name="productForm" class="form-horizontal">

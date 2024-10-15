@@ -4,6 +4,7 @@ import { ModalComponent } from 'src/app/shared/services/modal.service';
 import { ProductsFacade } from '../products.facade';
 import { Product } from 'src/app/api/nest-service/models';
 import _ from "lodash";
+import { ModalData } from 'src/app/shared/components/modal/modal.component';
 
 @Component({
   selector: 'app-update-product',
@@ -14,6 +15,9 @@ export class UpdateProductComponent implements OnInit, ModalComponent {
 
   data: any;
   productData: Product;
+  modalData: ModalData = {
+    title: 'Editar producto'
+  }
 
   constructor(
     private activeModal: NgbActiveModal,
