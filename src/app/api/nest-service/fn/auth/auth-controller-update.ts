@@ -9,13 +9,13 @@ import { RequestBuilder } from '../../request-builder';
 import { UpdateUserDto } from '../../models/update-user-dto';
 import { User } from '../../models/user';
 
-export interface UsersControllerUpdate$Params {
+export interface AuthControllerUpdate$Params {
   id: string;
       body: UpdateUserDto
 }
 
-export function usersControllerUpdate(http: HttpClient, rootUrl: string, params: UsersControllerUpdate$Params, context?: HttpContext): Observable<StrictHttpResponse<User>> {
-  const rb = new RequestBuilder(rootUrl, usersControllerUpdate.PATH, 'patch');
+export function authControllerUpdate(http: HttpClient, rootUrl: string, params: AuthControllerUpdate$Params, context?: HttpContext): Observable<StrictHttpResponse<User>> {
+  const rb = new RequestBuilder(rootUrl, authControllerUpdate.PATH, 'patch');
   if (params) {
     rb.path('id', params.id, {});
     rb.body(params.body, 'application/json');
@@ -31,4 +31,4 @@ export function usersControllerUpdate(http: HttpClient, rootUrl: string, params:
   );
 }
 
-usersControllerUpdate.PATH = '/api/auth/{id}';
+authControllerUpdate.PATH = '/api/auth/{id}';

@@ -7,12 +7,14 @@ import { StrictHttpResponse } from '../../strict-http-response';
 import { RequestBuilder } from '../../request-builder';
 
 
-export interface UsersControllerFindAll$Params {
+export interface AuthControllerValidateEmail$Params {
+  token: string;
 }
 
-export function usersControllerFindAll(http: HttpClient, rootUrl: string, params?: UsersControllerFindAll$Params, context?: HttpContext): Observable<StrictHttpResponse<void>> {
-  const rb = new RequestBuilder(rootUrl, usersControllerFindAll.PATH, 'get');
+export function authControllerValidateEmail(http: HttpClient, rootUrl: string, params: AuthControllerValidateEmail$Params, context?: HttpContext): Observable<StrictHttpResponse<void>> {
+  const rb = new RequestBuilder(rootUrl, authControllerValidateEmail.PATH, 'get');
   if (params) {
+    rb.path('token', params.token, {});
   }
 
   return http.request(
@@ -25,4 +27,4 @@ export function usersControllerFindAll(http: HttpClient, rootUrl: string, params
   );
 }
 
-usersControllerFindAll.PATH = '/api/auth';
+authControllerValidateEmail.PATH = '/api/auth/validate-email/{token}';

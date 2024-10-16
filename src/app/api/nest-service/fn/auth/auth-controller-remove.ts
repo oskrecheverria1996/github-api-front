@@ -7,14 +7,14 @@ import { StrictHttpResponse } from '../../strict-http-response';
 import { RequestBuilder } from '../../request-builder';
 
 
-export interface UsersControllerValidateEmail$Params {
-  token: string;
+export interface AuthControllerRemove$Params {
+  id: string;
 }
 
-export function usersControllerValidateEmail(http: HttpClient, rootUrl: string, params: UsersControllerValidateEmail$Params, context?: HttpContext): Observable<StrictHttpResponse<void>> {
-  const rb = new RequestBuilder(rootUrl, usersControllerValidateEmail.PATH, 'get');
+export function authControllerRemove(http: HttpClient, rootUrl: string, params: AuthControllerRemove$Params, context?: HttpContext): Observable<StrictHttpResponse<void>> {
+  const rb = new RequestBuilder(rootUrl, authControllerRemove.PATH, 'delete');
   if (params) {
-    rb.path('token', params.token, {});
+    rb.path('id', params.id, {});
   }
 
   return http.request(
@@ -27,4 +27,4 @@ export function usersControllerValidateEmail(http: HttpClient, rootUrl: string, 
   );
 }
 
-usersControllerValidateEmail.PATH = '/api/auth/validate-email/{token}';
+authControllerRemove.PATH = '/api/auth/{id}';

@@ -10,14 +10,12 @@ import { CreateProductDto } from '../../models/create-product-dto';
 import { Product } from '../../models/product';
 
 export interface ProductsControllerCreate$Params {
-  // Authorization: string;
       body: CreateProductDto
 }
 
 export function productsControllerCreate(http: HttpClient, rootUrl: string, params: ProductsControllerCreate$Params, context?: HttpContext): Observable<StrictHttpResponse<Product>> {
   const rb = new RequestBuilder(rootUrl, productsControllerCreate.PATH, 'post');
   if (params) {
-    // rb.header('Authorization', params.Authorization, {});
     rb.body(params.body, 'application/json');
   }
 

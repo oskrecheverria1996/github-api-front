@@ -9,22 +9,22 @@ import { BaseService } from '../base-service';
 import { ApiConfiguration } from '../api-configuration';
 import { StrictHttpResponse } from '../strict-http-response';
 
+import { authControllerCreate } from '../fn/auth/auth-controller-create';
+import { AuthControllerCreate$Params } from '../fn/auth/auth-controller-create';
+import { authControllerFindAll } from '../fn/auth/auth-controller-find-all';
+import { AuthControllerFindAll$Params } from '../fn/auth/auth-controller-find-all';
+import { authControllerFindOne } from '../fn/auth/auth-controller-find-one';
+import { AuthControllerFindOne$Params } from '../fn/auth/auth-controller-find-one';
+import { authControllerLogin } from '../fn/auth/auth-controller-login';
+import { AuthControllerLogin$Params } from '../fn/auth/auth-controller-login';
+import { authControllerRemove } from '../fn/auth/auth-controller-remove';
+import { AuthControllerRemove$Params } from '../fn/auth/auth-controller-remove';
+import { authControllerUpdate } from '../fn/auth/auth-controller-update';
+import { AuthControllerUpdate$Params } from '../fn/auth/auth-controller-update';
+import { authControllerValidateEmail } from '../fn/auth/auth-controller-validate-email';
+import { AuthControllerValidateEmail$Params } from '../fn/auth/auth-controller-validate-email';
 import { LoginResponseDto } from '../models/login-response-dto';
 import { User } from '../models/user';
-import { usersControllerCreate } from '../fn/auth/users-controller-create';
-import { UsersControllerCreate$Params } from '../fn/auth/users-controller-create';
-import { usersControllerFindAll } from '../fn/auth/users-controller-find-all';
-import { UsersControllerFindAll$Params } from '../fn/auth/users-controller-find-all';
-import { usersControllerFindOne } from '../fn/auth/users-controller-find-one';
-import { UsersControllerFindOne$Params } from '../fn/auth/users-controller-find-one';
-import { usersControllerLogin } from '../fn/auth/users-controller-login';
-import { UsersControllerLogin$Params } from '../fn/auth/users-controller-login';
-import { usersControllerRemove } from '../fn/auth/users-controller-remove';
-import { UsersControllerRemove$Params } from '../fn/auth/users-controller-remove';
-import { usersControllerUpdate } from '../fn/auth/users-controller-update';
-import { UsersControllerUpdate$Params } from '../fn/auth/users-controller-update';
-import { usersControllerValidateEmail } from '../fn/auth/users-controller-validate-email';
-import { UsersControllerValidateEmail$Params } from '../fn/auth/users-controller-validate-email';
 
 @Injectable({ providedIn: 'root' })
 export class AuthService extends BaseService {
@@ -32,177 +32,177 @@ export class AuthService extends BaseService {
     super(config, http);
   }
 
-  /** Path part for operation `usersControllerCreate()` */
-  static readonly UsersControllerCreatePath = '/api/auth/register';
+  /** Path part for operation `authControllerCreate()` */
+  static readonly AuthControllerCreatePath = '/api/auth/register';
 
   /**
    * This method provides access to the full `HttpResponse`, allowing access to response headers.
-   * To access only the response body, use `usersControllerCreate()` instead.
+   * To access only the response body, use `authControllerCreate()` instead.
    *
    * This method sends `application/json` and handles request body of type `application/json`.
    */
-  usersControllerCreate$Response(params: UsersControllerCreate$Params, context?: HttpContext): Observable<StrictHttpResponse<LoginResponseDto>> {
-    return usersControllerCreate(this.http, this.rootUrl, params, context);
+  authControllerCreate$Response(params: AuthControllerCreate$Params, context?: HttpContext): Observable<StrictHttpResponse<LoginResponseDto>> {
+    return authControllerCreate(this.http, this.rootUrl, params, context);
   }
 
   /**
    * This method provides access only to the response body.
-   * To access the full response (for headers, for example), `usersControllerCreate$Response()` instead.
+   * To access the full response (for headers, for example), `authControllerCreate$Response()` instead.
    *
    * This method sends `application/json` and handles request body of type `application/json`.
    */
-  usersControllerCreate(params: UsersControllerCreate$Params, context?: HttpContext): Observable<LoginResponseDto> {
-    return this.usersControllerCreate$Response(params, context).pipe(
+  authControllerCreate(params: AuthControllerCreate$Params, context?: HttpContext): Observable<LoginResponseDto> {
+    return this.authControllerCreate$Response(params, context).pipe(
       map((r: StrictHttpResponse<LoginResponseDto>): LoginResponseDto => r.body)
     );
   }
 
-  /** Path part for operation `usersControllerLogin()` */
-  static readonly UsersControllerLoginPath = '/api/auth/login';
+  /** Path part for operation `authControllerLogin()` */
+  static readonly AuthControllerLoginPath = '/api/auth/login';
 
   /**
    * This method provides access to the full `HttpResponse`, allowing access to response headers.
-   * To access only the response body, use `usersControllerLogin()` instead.
+   * To access only the response body, use `authControllerLogin()` instead.
    *
    * This method sends `application/json` and handles request body of type `application/json`.
    */
-  usersControllerLogin$Response(params: UsersControllerLogin$Params, context?: HttpContext): Observable<StrictHttpResponse<LoginResponseDto>> {
-    return usersControllerLogin(this.http, this.rootUrl, params, context);
+  authControllerLogin$Response(params: AuthControllerLogin$Params, context?: HttpContext): Observable<StrictHttpResponse<LoginResponseDto>> {
+    return authControllerLogin(this.http, this.rootUrl, params, context);
   }
 
   /**
    * This method provides access only to the response body.
-   * To access the full response (for headers, for example), `usersControllerLogin$Response()` instead.
+   * To access the full response (for headers, for example), `authControllerLogin$Response()` instead.
    *
    * This method sends `application/json` and handles request body of type `application/json`.
    */
-  usersControllerLogin(params: UsersControllerLogin$Params, context?: HttpContext): Observable<LoginResponseDto> {
-    return this.usersControllerLogin$Response(params, context).pipe(
+  authControllerLogin(params: AuthControllerLogin$Params, context?: HttpContext): Observable<LoginResponseDto> {
+    return this.authControllerLogin$Response(params, context).pipe(
       map((r: StrictHttpResponse<LoginResponseDto>): LoginResponseDto => r.body)
     );
   }
 
-  /** Path part for operation `usersControllerFindAll()` */
-  static readonly UsersControllerFindAllPath = '/api/auth';
+  /** Path part for operation `authControllerFindAll()` */
+  static readonly AuthControllerFindAllPath = '/api/auth';
 
   /**
    * This method provides access to the full `HttpResponse`, allowing access to response headers.
-   * To access only the response body, use `usersControllerFindAll()` instead.
+   * To access only the response body, use `authControllerFindAll()` instead.
    *
    * This method doesn't expect any request body.
    */
-  usersControllerFindAll$Response(params?: UsersControllerFindAll$Params, context?: HttpContext): Observable<StrictHttpResponse<void>> {
-    return usersControllerFindAll(this.http, this.rootUrl, params, context);
+  authControllerFindAll$Response(params?: AuthControllerFindAll$Params, context?: HttpContext): Observable<StrictHttpResponse<void>> {
+    return authControllerFindAll(this.http, this.rootUrl, params, context);
   }
 
   /**
    * This method provides access only to the response body.
-   * To access the full response (for headers, for example), `usersControllerFindAll$Response()` instead.
+   * To access the full response (for headers, for example), `authControllerFindAll$Response()` instead.
    *
    * This method doesn't expect any request body.
    */
-  usersControllerFindAll(params?: UsersControllerFindAll$Params, context?: HttpContext): Observable<void> {
-    return this.usersControllerFindAll$Response(params, context).pipe(
+  authControllerFindAll(params?: AuthControllerFindAll$Params, context?: HttpContext): Observable<void> {
+    return this.authControllerFindAll$Response(params, context).pipe(
       map((r: StrictHttpResponse<void>): void => r.body)
     );
   }
 
-  /** Path part for operation `usersControllerFindOne()` */
-  static readonly UsersControllerFindOnePath = '/api/auth/{id}';
+  /** Path part for operation `authControllerFindOne()` */
+  static readonly AuthControllerFindOnePath = '/api/auth/{id}';
 
   /**
    * This method provides access to the full `HttpResponse`, allowing access to response headers.
-   * To access only the response body, use `usersControllerFindOne()` instead.
+   * To access only the response body, use `authControllerFindOne()` instead.
    *
    * This method doesn't expect any request body.
    */
-  usersControllerFindOne$Response(params: UsersControllerFindOne$Params, context?: HttpContext): Observable<StrictHttpResponse<void>> {
-    return usersControllerFindOne(this.http, this.rootUrl, params, context);
+  authControllerFindOne$Response(params: AuthControllerFindOne$Params, context?: HttpContext): Observable<StrictHttpResponse<void>> {
+    return authControllerFindOne(this.http, this.rootUrl, params, context);
   }
 
   /**
    * This method provides access only to the response body.
-   * To access the full response (for headers, for example), `usersControllerFindOne$Response()` instead.
+   * To access the full response (for headers, for example), `authControllerFindOne$Response()` instead.
    *
    * This method doesn't expect any request body.
    */
-  usersControllerFindOne(params: UsersControllerFindOne$Params, context?: HttpContext): Observable<void> {
-    return this.usersControllerFindOne$Response(params, context).pipe(
+  authControllerFindOne(params: AuthControllerFindOne$Params, context?: HttpContext): Observable<void> {
+    return this.authControllerFindOne$Response(params, context).pipe(
       map((r: StrictHttpResponse<void>): void => r.body)
     );
   }
 
-  /** Path part for operation `usersControllerRemove()` */
-  static readonly UsersControllerRemovePath = '/api/auth/{id}';
+  /** Path part for operation `authControllerRemove()` */
+  static readonly AuthControllerRemovePath = '/api/auth/{id}';
 
   /**
    * This method provides access to the full `HttpResponse`, allowing access to response headers.
-   * To access only the response body, use `usersControllerRemove()` instead.
+   * To access only the response body, use `authControllerRemove()` instead.
    *
    * This method doesn't expect any request body.
    */
-  usersControllerRemove$Response(params: UsersControllerRemove$Params, context?: HttpContext): Observable<StrictHttpResponse<void>> {
-    return usersControllerRemove(this.http, this.rootUrl, params, context);
+  authControllerRemove$Response(params: AuthControllerRemove$Params, context?: HttpContext): Observable<StrictHttpResponse<void>> {
+    return authControllerRemove(this.http, this.rootUrl, params, context);
   }
 
   /**
    * This method provides access only to the response body.
-   * To access the full response (for headers, for example), `usersControllerRemove$Response()` instead.
+   * To access the full response (for headers, for example), `authControllerRemove$Response()` instead.
    *
    * This method doesn't expect any request body.
    */
-  usersControllerRemove(params: UsersControllerRemove$Params, context?: HttpContext): Observable<void> {
-    return this.usersControllerRemove$Response(params, context).pipe(
+  authControllerRemove(params: AuthControllerRemove$Params, context?: HttpContext): Observable<void> {
+    return this.authControllerRemove$Response(params, context).pipe(
       map((r: StrictHttpResponse<void>): void => r.body)
     );
   }
 
-  /** Path part for operation `usersControllerUpdate()` */
-  static readonly UsersControllerUpdatePath = '/api/auth/{id}';
+  /** Path part for operation `authControllerUpdate()` */
+  static readonly AuthControllerUpdatePath = '/api/auth/{id}';
 
   /**
    * This method provides access to the full `HttpResponse`, allowing access to response headers.
-   * To access only the response body, use `usersControllerUpdate()` instead.
+   * To access only the response body, use `authControllerUpdate()` instead.
    *
    * This method sends `application/json` and handles request body of type `application/json`.
    */
-  usersControllerUpdate$Response(params: UsersControllerUpdate$Params, context?: HttpContext): Observable<StrictHttpResponse<User>> {
-    return usersControllerUpdate(this.http, this.rootUrl, params, context);
+  authControllerUpdate$Response(params: AuthControllerUpdate$Params, context?: HttpContext): Observable<StrictHttpResponse<User>> {
+    return authControllerUpdate(this.http, this.rootUrl, params, context);
   }
 
   /**
    * This method provides access only to the response body.
-   * To access the full response (for headers, for example), `usersControllerUpdate$Response()` instead.
+   * To access the full response (for headers, for example), `authControllerUpdate$Response()` instead.
    *
    * This method sends `application/json` and handles request body of type `application/json`.
    */
-  usersControllerUpdate(params: UsersControllerUpdate$Params, context?: HttpContext): Observable<User> {
-    return this.usersControllerUpdate$Response(params, context).pipe(
+  authControllerUpdate(params: AuthControllerUpdate$Params, context?: HttpContext): Observable<User> {
+    return this.authControllerUpdate$Response(params, context).pipe(
       map((r: StrictHttpResponse<User>): User => r.body)
     );
   }
 
-  /** Path part for operation `usersControllerValidateEmail()` */
-  static readonly UsersControllerValidateEmailPath = '/api/auth/validate-email/{token}';
+  /** Path part for operation `authControllerValidateEmail()` */
+  static readonly AuthControllerValidateEmailPath = '/api/auth/validate-email/{token}';
 
   /**
    * This method provides access to the full `HttpResponse`, allowing access to response headers.
-   * To access only the response body, use `usersControllerValidateEmail()` instead.
+   * To access only the response body, use `authControllerValidateEmail()` instead.
    *
    * This method doesn't expect any request body.
    */
-  usersControllerValidateEmail$Response(params: UsersControllerValidateEmail$Params, context?: HttpContext): Observable<StrictHttpResponse<void>> {
-    return usersControllerValidateEmail(this.http, this.rootUrl, params, context);
+  authControllerValidateEmail$Response(params: AuthControllerValidateEmail$Params, context?: HttpContext): Observable<StrictHttpResponse<void>> {
+    return authControllerValidateEmail(this.http, this.rootUrl, params, context);
   }
 
   /**
    * This method provides access only to the response body.
-   * To access the full response (for headers, for example), `usersControllerValidateEmail$Response()` instead.
+   * To access the full response (for headers, for example), `authControllerValidateEmail$Response()` instead.
    *
    * This method doesn't expect any request body.
    */
-  usersControllerValidateEmail(params: UsersControllerValidateEmail$Params, context?: HttpContext): Observable<void> {
-    return this.usersControllerValidateEmail$Response(params, context).pipe(
+  authControllerValidateEmail(params: AuthControllerValidateEmail$Params, context?: HttpContext): Observable<void> {
+    return this.authControllerValidateEmail$Response(params, context).pipe(
       map((r: StrictHttpResponse<void>): void => r.body)
     );
   }

@@ -9,12 +9,12 @@ import { RequestBuilder } from '../../request-builder';
 import { CreateUserDto } from '../../models/create-user-dto';
 import { LoginResponseDto } from '../../models/login-response-dto';
 
-export interface UsersControllerCreate$Params {
+export interface AuthControllerCreate$Params {
       body: CreateUserDto
 }
 
-export function usersControllerCreate(http: HttpClient, rootUrl: string, params: UsersControllerCreate$Params, context?: HttpContext): Observable<StrictHttpResponse<LoginResponseDto>> {
-  const rb = new RequestBuilder(rootUrl, usersControllerCreate.PATH, 'post');
+export function authControllerCreate(http: HttpClient, rootUrl: string, params: AuthControllerCreate$Params, context?: HttpContext): Observable<StrictHttpResponse<LoginResponseDto>> {
+  const rb = new RequestBuilder(rootUrl, authControllerCreate.PATH, 'post');
   if (params) {
     rb.body(params.body, 'application/json');
   }
@@ -29,4 +29,4 @@ export function usersControllerCreate(http: HttpClient, rootUrl: string, params:
   );
 }
 
-usersControllerCreate.PATH = '/api/auth/register';
+authControllerCreate.PATH = '/api/auth/register';

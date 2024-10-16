@@ -7,14 +7,12 @@ import { StrictHttpResponse } from '../../strict-http-response';
 import { RequestBuilder } from '../../request-builder';
 
 
-export interface UsersControllerFindOne$Params {
-  id: string;
+export interface AuthControllerFindAll$Params {
 }
 
-export function usersControllerFindOne(http: HttpClient, rootUrl: string, params: UsersControllerFindOne$Params, context?: HttpContext): Observable<StrictHttpResponse<void>> {
-  const rb = new RequestBuilder(rootUrl, usersControllerFindOne.PATH, 'get');
+export function authControllerFindAll(http: HttpClient, rootUrl: string, params?: AuthControllerFindAll$Params, context?: HttpContext): Observable<StrictHttpResponse<void>> {
+  const rb = new RequestBuilder(rootUrl, authControllerFindAll.PATH, 'get');
   if (params) {
-    rb.path('id', params.id, {});
   }
 
   return http.request(
@@ -27,4 +25,4 @@ export function usersControllerFindOne(http: HttpClient, rootUrl: string, params
   );
 }
 
-usersControllerFindOne.PATH = '/api/auth/{id}';
+authControllerFindAll.PATH = '/api/auth';

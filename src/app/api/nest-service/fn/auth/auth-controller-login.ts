@@ -9,12 +9,12 @@ import { RequestBuilder } from '../../request-builder';
 import { LoginResponseDto } from '../../models/login-response-dto';
 import { LoginUserDto } from '../../models/login-user-dto';
 
-export interface UsersControllerLogin$Params {
+export interface AuthControllerLogin$Params {
       body: LoginUserDto
 }
 
-export function usersControllerLogin(http: HttpClient, rootUrl: string, params: UsersControllerLogin$Params, context?: HttpContext): Observable<StrictHttpResponse<LoginResponseDto>> {
-  const rb = new RequestBuilder(rootUrl, usersControllerLogin.PATH, 'post');
+export function authControllerLogin(http: HttpClient, rootUrl: string, params: AuthControllerLogin$Params, context?: HttpContext): Observable<StrictHttpResponse<LoginResponseDto>> {
+  const rb = new RequestBuilder(rootUrl, authControllerLogin.PATH, 'post');
   if (params) {
     rb.body(params.body, 'application/json');
   }
@@ -29,4 +29,4 @@ export function usersControllerLogin(http: HttpClient, rootUrl: string, params: 
   );
 }
 
-usersControllerLogin.PATH = '/api/auth/login';
+authControllerLogin.PATH = '/api/auth/login';

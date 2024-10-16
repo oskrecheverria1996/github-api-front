@@ -7,12 +7,12 @@ import { StrictHttpResponse } from '../../strict-http-response';
 import { RequestBuilder } from '../../request-builder';
 
 
-export interface UsersControllerRemove$Params {
+export interface AuthControllerFindOne$Params {
   id: string;
 }
 
-export function usersControllerRemove(http: HttpClient, rootUrl: string, params: UsersControllerRemove$Params, context?: HttpContext): Observable<StrictHttpResponse<void>> {
-  const rb = new RequestBuilder(rootUrl, usersControllerRemove.PATH, 'delete');
+export function authControllerFindOne(http: HttpClient, rootUrl: string, params: AuthControllerFindOne$Params, context?: HttpContext): Observable<StrictHttpResponse<void>> {
+  const rb = new RequestBuilder(rootUrl, authControllerFindOne.PATH, 'get');
   if (params) {
     rb.path('id', params.id, {});
   }
@@ -27,4 +27,4 @@ export function usersControllerRemove(http: HttpClient, rootUrl: string, params:
   );
 }
 
-usersControllerRemove.PATH = '/api/auth/{id}';
+authControllerFindOne.PATH = '/api/auth/{id}';

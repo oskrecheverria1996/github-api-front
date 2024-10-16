@@ -31,7 +31,7 @@ export class LoginComponent implements OnInit {
       email: this.data.email,
       password: this.data.password
     }
-    this.authService.usersControllerLogin({body})
+    this.authService.authControllerLogin({body})
     .subscribe((data) => {
       this.jwtService.login(data.token);
       this.router.navigateByUrl('home');

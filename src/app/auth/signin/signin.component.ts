@@ -29,7 +29,7 @@ export class SigninComponent implements OnInit {
   }
 
   register(): void {
-    this.authService.usersControllerCreate({body: this.newUser})
+    this.authService.authControllerCreate({body: this.newUser})
     .subscribe((res) => {
 
     },

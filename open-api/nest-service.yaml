@@ -10,7 +10,7 @@ paths:
           description: ''
   /api/auth/register:
     post:
-      operationId: UsersController_create
+      operationId: AuthController_create
       parameters: []
       requestBody:
         required: true
@@ -41,7 +41,7 @@ paths:
         - auth
   /api/auth/login:
     post:
-      operationId: UsersController_login
+      operationId: AuthController_login
       parameters: []
       requestBody:
         required: true
@@ -72,7 +72,7 @@ paths:
         - auth
   /api/auth:
     get:
-      operationId: UsersController_findAll
+      operationId: AuthController_findAll
       parameters: []
       responses:
         '200':
@@ -93,7 +93,7 @@ paths:
         - auth
   /api/auth/{id}:
     get:
-      operationId: UsersController_findOne
+      operationId: AuthController_findOne
       parameters:
         - name: id
           required: true
@@ -118,7 +118,7 @@ paths:
       tags:
         - auth
     patch:
-      operationId: UsersController_update
+      operationId: AuthController_update
       parameters:
         - name: id
           required: true
@@ -153,7 +153,7 @@ paths:
       tags:
         - auth
     delete:
-      operationId: UsersController_remove
+      operationId: AuthController_remove
       parameters:
         - name: id
           required: true
@@ -179,7 +179,7 @@ paths:
         - auth
   /api/auth/validate-email/{token}:
     get:
-      operationId: UsersController_validateEmail
+      operationId: AuthController_validateEmail
       parameters:
         - name: token
           required: true
@@ -206,12 +206,12 @@ paths:
   /api/products:
     post:
       operationId: ProductsController_create
-      parameters:
-        - name: Authorization
-          required: true
-          in: header
-          schema:
-            type: string
+      # parameters:
+      #   - name: Authorization
+      #     required: true
+      #     in: header
+      #     schema:
+      #       type: string
       requestBody:
         required: true
         content:
