@@ -90,6 +90,7 @@ implements IListComponent<any>, IEditComponent<any> {
            {
              name: {
                  $regex: searchCriteria,
+                 $options : 'i'
              },
            },
          ],

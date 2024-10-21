@@ -12,7 +12,7 @@
     </div>
 </app-page-header>
 <app-page-body>
-    <b *ngIf="(isLoading$ | async)">Cargando...</b>
+    <app-loading *ngIf="(isLoading$ | async)"></app-loading>
     <div *ngIf="!(isLoading$ | async)">
       <p-table 
         [value]="listResult$ | async"

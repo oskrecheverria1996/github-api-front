@@ -8,6 +8,7 @@ import { DelayInputDirective } from './directives/delay-input.directive';
 import { PageHeaderComponent } from './components/page-header/page-header.component';
 import { PageBodyComponent } from './components/page-body/page-body.component';
 import { NgSelectModule } from "@ng-select/ng-select";
+import { LoadingComponent } from './components/loading/loading.component';
 // import { ButtonsModule } from "ngx-bootstrap";
 
 @NgModule({
@@ -15,7 +16,8 @@ import { NgSelectModule } from "@ng-select/ng-select";
     ModalComponent,
     DelayInputDirective,
     PageHeaderComponent,
-    PageBodyComponent
+    PageBodyComponent,
+    LoadingComponent
   ],
   imports: [
     CommonModule,
@@ -32,7 +34,8 @@ import { NgSelectModule } from "@ng-select/ng-select";
     PageHeaderComponent,
     PageBodyComponent,
     DelayInputDirective,
-    NgSelectModule
+    NgSelectModule,
+    LoadingComponent,
   ]
 })
 export class SharedModule { }
