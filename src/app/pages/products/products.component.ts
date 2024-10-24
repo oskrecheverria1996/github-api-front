@@ -32,9 +32,19 @@ export class ProductsComponent
       { size: "lg", container: "body" }
     );
   }
+  
   delete(element: any, event: Event) {
-    this.productsFacade.delete(element.id);
+    const data = {
+      title: "Eliminar producto",
+      name: element.name
+    }
+    this.modalService.deleteModal(data).then((result) => {
+      if(result) {
+        this.productsFacade.delete(element.id);
+      }
+    })
   }
+  
   edit(element: any, event: Event) {
     this.modalService.loadComponent(UpdateProductComponent, 
       element.data,

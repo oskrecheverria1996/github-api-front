@@ -9,6 +9,7 @@ import { PageHeaderComponent } from './components/page-header/page-header.compon
 import { PageBodyComponent } from './components/page-body/page-body.component';
 import { NgSelectModule } from "@ng-select/ng-select";
 import { LoadingComponent } from './components/loading/loading.component';
+import { DeleteModalComponent } from './components/delete-modal/delete-modal.component';
 // import { ButtonsModule } from "ngx-bootstrap";
 
 @NgModule({
@@ -17,7 +18,8 @@ import { LoadingComponent } from './components/loading/loading.component';
     DelayInputDirective,
     PageHeaderComponent,
     PageBodyComponent,
-    LoadingComponent
+    LoadingComponent,
+    DeleteModalComponent
   ],
   imports: [
     CommonModule,
@@ -36,6 +38,7 @@ import { LoadingComponent } from './components/loading/loading.component';
     DelayInputDirective,
     NgSelectModule,
     LoadingComponent,
+    DeleteModalComponent
   ]
 })
 export class SharedModule { }

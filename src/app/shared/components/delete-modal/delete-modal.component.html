@@ -1,0 +1,27 @@
+<div class="modal-content">
+    <div class="modal-body">
+        <div class="row pt-2 pb-3">
+            <div class="col pl-4">
+                <!-- title -->
+                {{ (data.title ? data.title : 'Eliminar') }}
+            </div>
+            <div class="col-sm-2">
+                <!-- close -->
+                <span
+                (click)="activeModal.close()"
+                class="mousepointer"
+                >
+                    <i class="fas fa-times"></i>
+                </span>
+            </div>
+        </div>
+        <div class="row justify-content-center pl-2 pt-2 pb-3" *ngIf="data?.name">
+             Esta seguro que desea eliminar "{{ data?.name }}"
+        </div>
+        <div class="modal-footer pt-3 pb-2">
+            <!-- buttons -->
+            <button class="btn btn-neutral btn-3 btn-sm" (click)="activeModal.close()">Cancel</button>
+            <button class="btn btn-danger btn-3 btn-sm" (click)="delete()">Remove</button>
+        </div>
+    </div>
+</div>

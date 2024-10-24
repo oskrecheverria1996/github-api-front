@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { NgbModal, NgbModalOptions, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
+import { DeleteModalComponent, ModalDeleteModel } from '../components/delete-modal/delete-modal.component';
 
 
 export interface ModalComponent {
@@ -41,6 +42,17 @@ export class ModalService {
     modalRef.componentInstance.data = componentData;
 
     return modalRef;
+  }
+
+  deleteModal(data: ModalDeleteModel) {
+    const modalRef = this.modalService.open(DeleteModalComponent, {
+      centered: true,
+      size: "sm",
+      backdrop: "static",
+    });
+    modalRef.componentInstance.data = data;
+
+    return modalRef.result;
   }
 
 }

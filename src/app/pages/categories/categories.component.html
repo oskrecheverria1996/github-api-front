@@ -32,8 +32,8 @@
             <tr [pSelectableRow]="category">
                 <td>{{ category.name }}</td>
                 <td>{{ category.description }}</td>
-                <td><button class="btn" >
-                  <i (click)="delete(category, event$)" class="fas fa-trash"></i>
+                <td><button class="btn" (click)="delete(category, event$)">
+                  <i class="fas fa-trash"></i>
                 </button></td>
             </tr>
         </ng-template>

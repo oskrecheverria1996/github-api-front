@@ -33,9 +33,19 @@ export class CategoriesComponent
       { size: "lg", container: "body" }
     );
   }
-  delete(element: Category, event: Event) {
-    throw new Error('Method not implemented.');
+
+  delete(element: any, event: Event) {
+    let data = {
+      title: "Eliminar categoria",
+      name: element.name
+    }
+    this.modalService.deleteModal(data).then((result) => {
+      if(result) {
+        this.categoriesFacade.delete(element.id)
+      }
+    })
   }
+
   edit(element: any, event: Event) {
     this.modalService.loadComponent(UpdateCategoryComponent, 
       element.data,
