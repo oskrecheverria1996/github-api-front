@@ -271,7 +271,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/ErrorResponseDto'
         default:
-          description: The product records
+          description: The products record
           content:
             application/json:
               schema:
@@ -372,6 +372,97 @@ paths:
                 type: object
       tags:
         - products
+  /api/notifications:
+    get:
+      operationId: NotificationsController_allNotifications
+      parameters:
+        - name: limit
+          required: true
+          in: query
+          schema:
+            type: number
+        - name: page
+          required: true
+          in: query
+          schema:
+            type: number
+        - name: search
+          required: true
+          in: query
+          schema:
+            type: string
+      responses:
+        '400':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseDto'
+        '401':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseDto'
+        default:
+          description: The notifications record
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PaginatedResponseDto'
+      tags:
+        - notifications
+    patch:
+      operationId: NotificationsController_updateNotifications
+      parameters: []
+      responses:
+        '400':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseDto'
+        '401':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseDto'
+        default:
+          description: Update notification state
+          content:
+            application/json:
+              schema:
+                type: object
+      tags:
+        - notifications
+  /api/notifications/notReadNotifications:
+    get:
+      operationId: NotificationsController_getNotReadNotifications
+      parameters: []
+      responses:
+        '400':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseDto'
+        '401':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseDto'
+        default:
+          description: Not read notifications number
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/NotificationEntity'
+      tags:
+        - notifications
   /api/categories:
     post:
       operationId: CategoriesController_create
@@ -423,7 +514,7 @@ paths:
             type: string
       responses:
         '200':
-          description: The category records
+          description: The categories record
           content:
             application/json:
               schema:
@@ -453,7 +544,7 @@ paths:
             type: string
       responses:
         '200':
-          description: Get a product
+          description: Get a category
           content:
             application/json:
               schema:
@@ -488,7 +579,7 @@ paths:
               $ref: '#/components/schemas/UpdateCategoryDto'
       responses:
         '200':
-          description: Get a product
+          description: Update a category
           content:
             application/json:
               schema:
@@ -517,7 +608,7 @@ paths:
             type: string
       responses:
         '200':
-          description: Delete a product
+          description: Delete a category
           content:
             application/json:
               schema:
@@ -708,6 +799,9 @@ components:
           type: boolean
       required:
         - available
+    NotificationEntity:
+      type: object
+      properties: {}
     Category:
       type: object
       properties:

@@ -52,6 +52,13 @@ const routes: Routes = [
         import("./pages/categories/categories.module").then(
             (m) => m.CategoriesModule
         ),
+      },
+      {
+        path: "user",
+        loadChildren: () => 
+        import("./pages/user/user.module").then(
+          (m) => m.UserModule
+        ),
       }
     ]
   }, { 

@@ -5,7 +5,7 @@
 export const environment = {
   production: false,
   // endpoint: 'https://nestjs-server-production-33ac.up.railway.app'
-  endpoint: 'http://localhost:3000'
+  endpoint: 'http://localhost:3000',
 };
 
 /*

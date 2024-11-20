@@ -46,6 +46,11 @@ export abstract class ListComponentBase<T> implements OnDestroy {
         )
     }
 
+
+    /**
+     * Load changeSearchCriteria() method on facade
+     * @param filters? Represents the filter query
+     */
     loadByCriteria(filters?: any) {
         this.currentFacade.changeSearchCriteria(filters);
     }

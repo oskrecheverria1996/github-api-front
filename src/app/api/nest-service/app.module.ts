@@ -7,6 +7,7 @@ import { ApiConfiguration, ApiConfigurationParams } from './api-configuration';
 import { ApiService } from './services/api.service';
 import { AuthService } from './services/auth.service';
 import { ProductsService } from './services/products.service';
+import { NotificationsService } from './services/notifications.service';
 import { CategoriesService } from './services/categories.service';
 
 /**
@@ -20,6 +21,7 @@ import { CategoriesService } from './services/categories.service';
     ApiService,
     AuthService,
     ProductsService,
+    NotificationsService,
     CategoriesService,
     ApiConfiguration
   ],

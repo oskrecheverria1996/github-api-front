@@ -13,6 +13,11 @@ import { CommonModule } from "@angular/common";
 import { CookieService } from "ngx-cookie-service";
 import { AuthInterceptor } from './shared/interceptors/auth-interceptor.interceptor';
 import { UnauthorizedInterceptor } from './shared/interceptors/unauthorized.interceptor';
+import { SocketIoConfig, SocketIoModule } from 'ngx-socket-io';
+import { environment } from 'src/environments/environment';
+
+const config: SocketIoConfig = { url: 'ws://localhost:3000', options: {} };
+
 @NgModule({
   imports: [
     BrowserAnimationsModule,
@@ -30,6 +35,7 @@ import { UnauthorizedInterceptor } from './shared/interceptors/unauthorized.inte
           resetTimeoutOnDuplicate:true
       }
   ),
+    SocketIoModule.forRoot(config)
   ],
   declarations: [
     AppComponent,

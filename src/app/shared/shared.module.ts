@@ -10,6 +10,8 @@ import { PageBodyComponent } from './components/page-body/page-body.component';
 import { NgSelectModule } from "@ng-select/ng-select";
 import { LoadingComponent } from './components/loading/loading.component';
 import { DeleteModalComponent } from './components/delete-modal/delete-modal.component';
+import { NotificationComponent } from './components/notification/notification.component';
+import { TimeAgoPipe } from './pipes/time-ago.pipe';
 // import { ButtonsModule } from "ngx-bootstrap";
 
 @NgModule({
@@ -19,7 +21,9 @@ import { DeleteModalComponent } from './components/delete-modal/delete-modal.com
     PageHeaderComponent,
     PageBodyComponent,
     LoadingComponent,
-    DeleteModalComponent
+    DeleteModalComponent,
+    NotificationComponent,
+    TimeAgoPipe
   ],
   imports: [
     CommonModule,
@@ -38,7 +42,9 @@ import { DeleteModalComponent } from './components/delete-modal/delete-modal.com
     DelayInputDirective,
     NgSelectModule,
     LoadingComponent,
-    DeleteModalComponent
+    DeleteModalComponent,
+    NotificationComponent,
+    TimeAgoPipe
   ]
 })
 export class SharedModule { }

@@ -4,6 +4,20 @@
     <a class="h4 mb-0 text-white text-uppercase d-none d-lg-inline-block"  ngbTooltip="Ir atras" routerLinkActive="active" [routerLink]="['/home/users-data']">
       <i class="ni ni-bold-left"></i>
     </a>
+    <!-- Notification -->
+    <div class="d-md-flex ml-lg-auto pr-3" ngbDropdown>
+      <i class="fas fa-bell" style="color: white;" id="dropdownBasic1" ngbDropdownToggle  role="button">
+        <span class="notification-badge" *ngIf="notificationsNumber > 0">
+          {{ notificationsNumber }}
+        </span>
+      </i>
+      <div ngbDropdownMenu (scroll)="onScroll($event)" aria-labelledby="dropdownBasic1" class="dropdown-menu dropdown-menu-end">
+        <app-notification *ngFor="let notification of notificationsList" 
+          [notification]="notification" 
+          ngbDropdownItem>
+        </app-notification>
+			</div>
+    </div>
     <!-- User -->
     <ul class="navbar-nav align-items-center d-none d-md-flex">
       <li class="nav-item" ngbDropdown placement="bottom-right">
