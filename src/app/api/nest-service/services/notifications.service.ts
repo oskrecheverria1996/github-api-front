@@ -58,8 +58,7 @@ export class NotificationsService extends BaseService {
    *
    * This method doesn't expect any request body.
    */
-  notificationsControllerUpdateNotifications$Response(params?: NotificationsControllerUpdateNotifications$Params, context?: HttpContext): Observable<StrictHttpResponse<{
-}>> {
+  notificationsControllerUpdateNotifications$Response(params?: NotificationsControllerUpdateNotifications$Params, context?: HttpContext): Observable<StrictHttpResponse<number>> {
     return notificationsControllerUpdateNotifications(this.http, this.rootUrl, params, context);
   }
 
@@ -69,12 +68,9 @@ export class NotificationsService extends BaseService {
    *
    * This method doesn't expect any request body.
    */
-  notificationsControllerUpdateNotifications(params?: NotificationsControllerUpdateNotifications$Params, context?: HttpContext): Observable<{
-}> {
+  notificationsControllerUpdateNotifications(params?: NotificationsControllerUpdateNotifications$Params, context?: HttpContext): Observable<number> {
     return this.notificationsControllerUpdateNotifications$Response(params, context).pipe(
-      map((r: StrictHttpResponse<{
-}>): {
-} => r.body)
+      map((r: StrictHttpResponse<number>): number => r.body)
     );
   }
 

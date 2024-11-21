@@ -11,7 +11,7 @@ import { PaginatedResponseDto } from '../../models/paginated-response-dto';
 export interface NotificationsControllerAllNotifications$Params {
   limit: number;
   page: number;
-  search?: string;
+  search: string;
 }
 
 export function notificationsControllerAllNotifications(http: HttpClient, rootUrl: string, params: NotificationsControllerAllNotifications$Params, context?: HttpContext): Observable<StrictHttpResponse<PaginatedResponseDto>> {

@@ -433,7 +433,7 @@ paths:
           content:
             application/json:
               schema:
-                type: object
+                type: number
       tags:
         - notifications
   /api/notifications/notReadNotifications:

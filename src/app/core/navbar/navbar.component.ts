@@ -89,13 +89,10 @@ export class NavbarComponent implements OnInit {
 
   updateNotificationsState() {
     this.notificationsService.notificationsControllerUpdateNotifications()
-      .pipe(finalize(() => this.socketService.emitEvent()))
-      .subscribe((res) => {
-        console.log(res);
+      .subscribe((res: number) => {
+        this.notificationsNumber = res;
       })
   }
-
-  
 
   @HostListener('scroll', ['$event'])
   onScroll(event: any) {
@@ -104,6 +101,13 @@ export class NavbarComponent implements OnInit {
       this.getNotificationsList(this.notificationsLimit, this.notificationsPage + 1);
     }
   }
+
+  onDropdownClick(event) {
+    if(event) {
+      this.updateNotificationsState();
+    }
+  }
+
 
 
 }

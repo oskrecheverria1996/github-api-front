@@ -10,8 +10,7 @@ import { RequestBuilder } from '../../request-builder';
 export interface NotificationsControllerUpdateNotifications$Params {
 }
 
-export function notificationsControllerUpdateNotifications(http: HttpClient, rootUrl: string, params?: NotificationsControllerUpdateNotifications$Params, context?: HttpContext): Observable<StrictHttpResponse<{
-}>> {
+export function notificationsControllerUpdateNotifications(http: HttpClient, rootUrl: string, params?: NotificationsControllerUpdateNotifications$Params, context?: HttpContext): Observable<StrictHttpResponse<number>> {
   const rb = new RequestBuilder(rootUrl, notificationsControllerUpdateNotifications.PATH, 'patch');
   if (params) {
   }
@@ -21,8 +20,7 @@ export function notificationsControllerUpdateNotifications(http: HttpClient, roo
   ).pipe(
     filter((r: any): r is HttpResponse<any> => r instanceof HttpResponse),
     map((r: HttpResponse<any>) => {
-      return r as StrictHttpResponse<{
-      }>;
+      return (r as HttpResponse<any>).clone({ body: parseFloat(String((r as HttpResponse<any>).body)) }) as StrictHttpResponse<number>;
     })
   );
 }

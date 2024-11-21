@@ -5,8 +5,8 @@
       <i class="ni ni-bold-left"></i>
     </a>
     <!-- Notification -->
-    <div class="d-md-flex ml-lg-auto pr-3" ngbDropdown>
-      <i class="fas fa-bell" style="color: white;" id="dropdownBasic1" ngbDropdownToggle  role="button">
+    <div class="d-md-flex ml-lg-auto pr-3" ngbDropdown (openChange)="onDropdownClick($event)">
+      <i class="fas fa-bell" style="color: white;" id="dropdownBasic1" ngbDropdownToggle role="button">
         <span class="notification-badge" *ngIf="notificationsNumber > 0">
           {{ notificationsNumber }}
         </span>
